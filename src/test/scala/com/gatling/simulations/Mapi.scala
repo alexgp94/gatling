@@ -50,9 +50,9 @@ class Mapi extends Simulation {
   setUp(
     users.inject(
       nothingFor(1),
-      atOnceUsers(50)
-      //        constantUsersPerSec(10) during (10),                 //numberOfRequests = (constantUsersPerSec * during)
-      //        rampUsersPerSec(50) to (100) during (20 seconds)      //numberOfRequests = (averageRampUsersPerSec * during)
+      atOnceUsers(50),
+              constantUsersPerSec(10) during (10),                 //numberOfRequests = (constantUsersPerSec * during)
+              rampUsersPerSec(50) to (100) during (20 seconds)      //numberOfRequests = (averageRampUsersPerSec * during)
     )
   ).protocols(httpConfig)
 

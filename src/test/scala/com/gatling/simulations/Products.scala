@@ -2,8 +2,7 @@ package com.gatling.simulations
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-
-import scala.concurrent.duration._
+import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
 class Products extends Simulation {
@@ -106,7 +105,7 @@ class Products extends Simulation {
 
   setUp(
     users.inject(
-      constantConcurrentUsers(1200) during (20 seconds),
+      constantConcurrentUsers(100) during (10 seconds),
 //      rampConcurrentUsers(100) to (200) during (40 seconds)
 //            incrementConcurrentUsers(10)
 //              .times(5)
