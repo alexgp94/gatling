@@ -8,6 +8,14 @@ import scala.language.postfixOps
 
 class Products extends Simulation {
 
+  object Identify {
+    val identityDocumentType = {
+      exec(
+        http("Get identityDocumentType")
+          .get("/UAT/user/v2/api/identityDocumentType")
+      ).pause(1, 2)
+    }
+    }
 
   object Products {
     val products1 = {
@@ -75,42 +83,39 @@ class Products extends Simulation {
   //    }
   //  }
 
-  //  val httpConfig1 = http
-  //    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com")
-  //    .header("Content-Type", "application/json")
 
   val httpConfig = http
     .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjRlMDBlOGZlNWYyYzg4Y2YwYzcwNDRmMzA3ZjdlNzM5Nzg4ZTRmMWUiLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtdWF0IiwiYXVkIjoiaW5rYWZhcm1hLXVhdCIsImF1dGhfdGltZSI6MTYxNjUyNjAyOCwidXNlcl9pZCI6IjVhM290SnQ4dElWRjJZNnFWdGVpdlFnWUdlMDMiLCJzdWIiOiI1YTNvdEp0OHRJVkYyWTZxVnRlaXZRZ1lHZTAzIiwiaWF0IjoxNjE2NTI2MDI4LCJleHAiOjE2MTY1Mjk2MjgsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiYW5vbnltb3VzIn19.dZQtPWs3IOe-TCSDEK7cFg1WemP_2wg1Z5PYHpdgEXCmPGV3WyxK4d3aOsTMqg9xxWtMnQlNv1jt-4jbWIckC97TDSnebLaztTPKXyV7eKEMNiTfsj6oX621AtMLEx6AJoEV47_MLOZ64g9XAD__p9OipBD-aGaHeRx45xuLqPfDQMqDzYaSLtjpOYSW6l99ZS1Fmm2cHuyxLOIV9FuFOCWJ-020i8hLckyl_p1Bmh1uEDZYH-AkWQDAzaLtxSVbO5bp0F92SiPRhbo7Y5ulasQ5BPwqjtT34DkQ5uNB8930uVaBqXdogYhr-5XMpE5apJufsUQoYFXjdNG2SrjbAw")
+    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY4NDY2MjEyMTQxMjQ4NzUxOWJiZjhlYWQ4ZGZiYjM3ODYwMjk5ZDciLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtdWF0IiwiYXVkIjoiaW5rYWZhcm1hLXVhdCIsImF1dGhfdGltZSI6MTYxNjY4MTI2MSwidXNlcl9pZCI6IndvT3ByODJ4WUNPQUhTTFM1djFxTHQ4TEI4cDIiLCJzdWIiOiJ3b09wcjgyeFlDT0FIU0xTNXYxcUx0OExCOHAyIiwiaWF0IjoxNjE2NjgxMjYxLCJleHAiOjE2MTY2ODQ4NjEsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiYW5vbnltb3VzIn19.Xy5dNaD6sh0ug_soaafnsk_p8pQ773-SQueJn4pEEv2X-F3Uoy466pKclzj0sjDdvFbqkO9diO-ZpIvplcfO_eZL0n1lVeKd9767DMCcip6ooAS7m5I3H19dhzZqsNwForpsU--AkUIVHufQ5TIpLjNsL9iBBr0QeJW8OKBTiXsokODfxc9rn2IpM34xBaG_8ZfU9mr_ETwqMuGM6BRTkky9PJV8mu21UJFV0BrcO1vXEULdDJ-ZRsRq_dtlFoa9-GHtukDlHytDqf6RThK0B3bhi0X2JMjW2NF7pyZwHeb8ro8L5l398RYJGBGdx-Mnt--r1ZbA7FqsubezD9Ah2w")
 
   //  val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
   //  val admins = scenario("Admins").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
-  val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree)
+  val users = scenario("Users").exec(Identify.identityDocumentType)
 
-        setUp(
-          users.inject(
-            nothingFor(1),
-//            atOnceUsers(100)
-            constantUsersPerSec(20) during (10),                    //numberOfRequests = (constantUsersPerSec * during)
-            rampUsersPerSec(50) to (100) during (10 seconds)      //numberOfRequests = (averageRampUsersPerSec * during)
-          )
-        ).protocols(httpConfig)
+//        setUp(
+//          users.inject(
+//            nothingFor(1),
+//            atOnceUsers(500)
+////            constantUsersPerSec(20) during (10),                    //numberOfRequests = (constantUsersPerSec * during)
+////            rampUsersPerSec(50) to (100) during (10 seconds)      //numberOfRequests = (averageRampUsersPerSec * during)
+//          )
+//        ).protocols(httpConfig)
 
 
-//  setUp(
-//    users.inject(
-//      constantConcurrentUsers(50) during (20 seconds),
+  setUp(
+    users.inject(
+      constantConcurrentUsers(1200) during (20 seconds),
 //      rampConcurrentUsers(100) to (200) during (40 seconds)
 //            incrementConcurrentUsers(10)
 //              .times(5)
 //              .eachLevelLasting(20)
 //              .separatedByRampsLasting(20 seconds)
 //              .startingFrom(200)
-//    )
-//      .protocols(httpConfig)
-//  )
+    )
+      .protocols(httpConfig)
+  )
 //    .maxDuration(4 minute)
 
 }
