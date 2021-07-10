@@ -14,108 +14,182 @@ class Products extends Simulation {
           .get("/UAT/user/v2/api/identityDocumentType")
       ).pause(1, 2)
     }
-    }
+  }
 
   object Products {
     val products1 = {
       exec(
-        http("Get Products 1")
-          .get("/UAT/products/025868,025867,025863,025862,025460,026918,026920,024414,029902,024200,025888,024373,010304,012555,010802,023707,024864,024414,010419,024202,025460,025863,431226,024671,026920,026259,024409,012559,026352,023707,023810,012521,012557,430796")
-      ).pause(1, 2)
+        http("Products 1")
+          .get("/products/420863,427640,144052,139064,425313,425311,426130,424202,406774,406195,406713,428666,261241")).pause(1)
     }
     val products2 = {
       exec(
-        http("Get Products 2")
-          .get("/UAT/products/009103,025933,236359,030369,030370,030371,030373,030520,026204,026205,026203,010007,025417,010007,024277,025417,011187,020774,011185,029938,030334,030335,030319,032745,032747")
-      ).pause(1, 2)
+        http("Products 2")
+          .get("/products/261327,238072,425029,428509,425278,424773,427122,427123,429265,429264,423594,425691,922782")).pause(1)
     }
+
+    val products3 = {
+      exec(
+        http("Products 3")
+          .get("/products/922779,922775,922888,424157,424158,426227,425222,904163,189039,189003,189002,911915,429782")).pause(1)
+    }
+    val products4 = {
+      exec(
+        http("Products 4")
+          .get("/products/908188,908473,428189,121030,428857,906201,429164,428856,170195,150086,150087,150030,150044,150055,150032")).pause(1)
+    }
+    val products5 = {
+      exec(
+        http("Products 5")
+          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/261099,427564,426068,426074,426069,900034,429961,423708,900137,426598,900573,908561")).pause(1)
+    }
+    val products6 = {
+      exec(
+        http("Products 6")
+          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/900420,900421,701197,424008,701389,108024,108020,424234,424236,138117,420573,427809")).pause(1)
+    }
+    val products7 = {
+      exec(
+        http("Products 7")
+          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/427714,506055,429584,428499,421958,424744,421375,264050,324071,324070")).pause(1)
+
+    }
+    val products8 = {
+      exec(
+        http("Products 8")
+          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/324069,327091,236324,427185,236327,236400,236439,422700,426714,428282,426655")).pause(1)
+    }
+
+
     val departments = {
       exec(
-        http("WEB Departments")
-          .get("/UAT/departments")
+        http("WEB Departments cyber-wow2")
+          .get("/departments")
       )
-      //        .pause(1, 2)
+      //        
     }
     val categories = {
       exec(
-        http("APP Categories")
-          .get("/UAT/getcategories")
-      ).pause(1, 2)
+        http("APP Categories cyber-wow2")
+          .get("/getcategories")
+      )
     }
     val departmentsTree = {
       exec(
-        http("Promociones Exclusivas")
-          .get("/UAT/department-tree?keyword=promociones-exclusivas")
-      ).pause(1, 2)
-    }
-    val searchFilters = {
-      repeat(1) {
-        exec(
-          http("Get Search-filters")
-            .post("/UAT/search-filters")
-            .body(RawFileBody("data/search-filters.json")).asJson
-        ).pause(1, 2)
-      }
-    }
-    val filteredProducts = {
-      repeat(2) {
-        exec(
-          http("Get filtered-products")
-            .post("/UAT/filtered-products")
-            .body(RawFileBody("data/filtered-products.json")).asJson
-        ).pause(1, 2)
-      }
+        http("WEB Cyber-wow2")
+          .get("/department-tree?keyword=cyber-wow2")
+      ).pause(1)
     }
   }
 
-  //  def coverage(): Unit ={
-  //
-  //  }
+  object Search {
+    val searchFiltersProducts = {
+      //      repeat(1) {
+      exec(
+        http("Search-filters")
+          .post("/search-filters")
+          .body(RawFileBody("data/search-filters.json")).asJson
+      )
 
-  //  object Mapi {
-  //    val cart = {
-  //      exec(
-  //        http("AddToCart")
-  //          .post("/UAT/cart")
-  //          .body(RawFileBody("data/addToCart.json")).asJson
-  //      ).pause(1)
-  //    }
-  //  }
+        .exec(
+          http("Filtered-products")
+            .post("/filtered-products")
+            .body(RawFileBody("data/filtered-products.json")).asJson
+        ) //
+    }
+  }
+
+  object Home {
+    val deeplinks = {
+      exec(
+        http("burts-bees-en-promocion")
+          .get("/department-tree?keyword=burts-bees-en-promocion"))
+        .pause(1)
+
+        .exec(
+          http("Filtered-Products")
+            .post("/filtered-products")
+            .body(RawFileBody("data/deeplink-filtered-products.json")).asJson)
+        .pause(1)
+
+        .exec(
+          http("burts-bees-en-promocion")
+            .get("/department-tree?keyword=burts-bees-en-promocion"))
+        .pause(1)
+    }
+  }
 
 
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com")
+    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/UAT")
+    //    .baseUrl("http://algoliauat.backend.cindibyinkafarma.com")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY4NDY2MjEyMTQxMjQ4NzUxOWJiZjhlYWQ4ZGZiYjM3ODYwMjk5ZDciLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtdWF0IiwiYXVkIjoiaW5rYWZhcm1hLXVhdCIsImF1dGhfdGltZSI6MTYxNjY4MTI2MSwidXNlcl9pZCI6IndvT3ByODJ4WUNPQUhTTFM1djFxTHQ4TEI4cDIiLCJzdWIiOiJ3b09wcjgyeFlDT0FIU0xTNXYxcUx0OExCOHAyIiwiaWF0IjoxNjE2NjgxMjYxLCJleHAiOjE2MTY2ODQ4NjEsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnt9LCJzaWduX2luX3Byb3ZpZGVyIjoiYW5vbnltb3VzIn19.Xy5dNaD6sh0ug_soaafnsk_p8pQ773-SQueJn4pEEv2X-F3Uoy466pKclzj0sjDdvFbqkO9diO-ZpIvplcfO_eZL0n1lVeKd9767DMCcip6ooAS7m5I3H19dhzZqsNwForpsU--AkUIVHufQ5TIpLjNsL9iBBr0QeJW8OKBTiXsokODfxc9rn2IpM34xBaG_8ZfU9mr_ETwqMuGM6BRTkky9PJV8mu21UJFV0BrcO1vXEULdDJ-ZRsRq_dtlFoa9-GHtukDlHytDqf6RThK0B3bhi0X2JMjW2NF7pyZwHeb8ro8L5l398RYJGBGdx-Mnt--r1ZbA7FqsubezD9Ah2w")
+    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjOGUyYjI5NmM2ZjMyODRlYzMwYjg4NjVkNzI5M2U2MjdmYTJiOGYiLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtcHJvZCIsImF1ZCI6Imlua2FmYXJtYS1wcm9kIiwiYXV0aF90aW1lIjoxNjE4NjkxMTI1LCJ1c2VyX2lkIjoiTGI3YmtNYkdnWVhPRHF6S2U1V1k2dWdTbFp0MiIsInN1YiI6IkxiN2JrTWJHZ1lYT0RxektlNVdZNnVnU2xadDIiLCJpYXQiOjE2MTg3MDU4MTcsImV4cCI6MTYxODcwOTQxNywiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJhbm9ueW1vdXMifX0.iR8CZOdB0NPTsVexvyEApNjVlgZtE8dHxAgMSAgi2TkFVXIpEO0MXHhx6EygdvkXP9IT_YuLDDnLxCLF18vXveUFvV8yGgNy8TONpc33B-7NbzheLxiQwoXwjloKI6NAhOcppFChU4cBz2PisdQrXA1X1JzD6m9DMAV_2sc5RBGczNysS1foW--8t8GZ2554C70ICDsIDTMVYwWf-Qn8YkISw9r1WxDn0lAkY1Ge9OGMpOByU7g8UKLLwpFWHM61Qi7gIQniHI31s5gXOud7b1TMhyLZ9aUQ8_9hh-MNarNaCi4Qe9ZO88IH4SAos8MhaOjxOGfCIvTQDA9GlFR69A")
 
-  //  val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
+  //    val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
+
+  //  val users = scenario("Users").exec(Products.products1, Products.products2)
+  //    val users = scenario("Users").exec(Products.searchFilters)
+  //    val users = scenario("Admins").exec(Products.departments, Products.categories, Products.departmentsTree)
+  //    val users = scenario("Admins").exec(Products.filteredProducts)
   //  val admins = scenario("Admins").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
-  val users = scenario("Users").exec(Identify.identityDocumentType)
-
-//        setUp(
-//          users.inject(
-//            nothingFor(1),
-//            atOnceUsers(500)
-////            constantUsersPerSec(20) during (10),                    //numberOfRequests = (constantUsersPerSec * during)
-////            rampUsersPerSec(50) to (100) during (10 seconds)      //numberOfRequests = (averageRampUsersPerSec * during)
-//          )
-//        ).protocols(httpConfig)
+  //  val users = scenario("Users").exec(Identify.identityDocumentType)
 
 
-  setUp(
-    users.inject(
-      constantConcurrentUsers(100) during (10 seconds),
-//      rampConcurrentUsers(100) to (200) during (40 seconds)
-//            incrementConcurrentUsers(10)
-//              .times(5)
-//              .eachLevelLasting(20)
-//              .separatedByRampsLasting(20 seconds)
-//              .startingFrom(200)
+//  val admin = scenario("Admins").exec(Search.searchFiltersProducts)
+  //  val admin = scenario("Admins").exec(Products.categories,Products.departmentsTree)
+  //  val users = scenario("Admins").exec(Home.deeplinks)
+//  val admin = scenario("Users").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8)
+  val admin = scenario("Admins").exec(Search.searchFiltersProducts, Home.deeplinks)
+    setUp(
+      admin.inject(
+        nothingFor(1),
+        rampUsers(2000) during (60 seconds)
+      ).protocols(httpConfig))
+
+ /* setUp(
+      admin.inject(
+        nothingFor(1),
+        //                  atOnceUsers(4000)
+//        rampUsers(2000) during (60 seconds)
+              constantUsersPerSec(4000) during (60 second))
+              .throttle(reachRps(400) in (60 second)
+        //            constantUsersPerSec(20) during (10),                    //numberOfRequests = (constantUsersPerSec * during)
+        //            rampUsersPerSec(50) to (100) during (10 seconds))      //numberOfRequests = (averageRampUsersPerSec * during)
+      ).protocols(httpConfig))
+*/
+
+  /*setUp(
+    admin.inject(
+//      constantConcurrentUsers(2000) during (60 seconds),
+              rampConcurrentUsers(1000) to (4000) during (60 seconds))
+                .throttle(reachRps(400) in (60 second)
+//                  incrementConcurrentUsers(10)
+      //              .times(5)
+      //              .eachLevelLasting(20)
+      //              .separatedByRampsLasting(20 seconds)
+      //              .startingFrom(200)
     )
-      .protocols(httpConfig)
-  )
-//    .maxDuration(4 minute)
+      .protocols(httpConfig))
+  */
+//        .maxDuration(2 minute)
+
+
+  /*  setUp(
+    admin.inject(
+      constantConcurrentUsers(1000) during (80 seconds),
+      //        rampConcurrentUsers(100) to (800) during (40 seconds)
+      //            incrementConcurrentUsers(10)
+      //              .times(5)
+      //              .eachLevelLasting(20)
+      //              .separatedByRampsLasting(20 seconds)
+      //              .startingFrom(200)
+    )
+      .protocols(httpConfig))*/
+
+  //      .maxDuration(2 minute)
+
 
 }
 
