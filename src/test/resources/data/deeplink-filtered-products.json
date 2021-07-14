@@ -1,11 +1,13 @@
 {
   "departmentsFilter": [
-    14401
+    15160
   ],
   "categoriesFilter": [
-    14393
+    15151
   ],
-  "subcategoriesFilter": [],
+  "subcategoriesFilter": [
+    15150
+  ],
   "brandsFilter": [],
   "page": 0,
   "rows": 8,

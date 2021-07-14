@@ -1,1 +1,70 @@
-{"addressId":-1,"amount":0,"creditCardId":-1,"currency":-1,"discountId":null,"paymentMethodId":-1,"products":[{"productId":"020275","presentationIdSelected":1,"quantity":1}]}
+{
+  "addressId": -1,
+  "amount": 0,
+  "creditCardId": -1,
+  "currency": -1,
+  "discountId": null,
+  "paymentMethodId": -1,
+  "products": [
+    {
+      "productId": "010472",
+      "presentationIdSelected": 1,
+      "quantity": 3
+    },
+    {
+      "productId": "024411",
+      "presentationIdSelected": 1,
+      "quantity": 2
+    },
+    {
+      "productId": "029509",
+      "presentationIdSelected": 1,
+      "quantity": 2
+    },
+    {
+      "productId": "008247",
+      "presentationIdSelected": 3,
+      "quantity": 6
+    },
+    {
+      "productId": "236358",
+      "presentationIdSelected": 1,
+      "quantity": 1
+    },
+    {
+      "productId": "026387",
+      "presentationIdSelected": 1,
+      "quantity": 1
+    },
+    {
+      "productId": "023838",
+      "presentationIdSelected": 1,
+      "quantity": 1
+    },
+    {
+      "productId": "011903",
+      "presentationIdSelected": 1,
+      "quantity": 1
+    },
+    {
+      "productId": "025693",
+      "presentationIdSelected": 1,
+      "quantity": 4
+    },
+    {
+      "productId": "025891",
+      "presentationIdSelected": 1,
+      "quantity": 2
+    },
+    {
+      "productId": "026001",
+      "presentationIdSelected": 3,
+      "quantity": 5
+    },
+    {
+      "productId": "026386",
+      "presentationIdSelected": 1,
+      "quantity": 1
+    }
+  ]
+}

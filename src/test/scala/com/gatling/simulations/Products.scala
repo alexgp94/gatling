@@ -40,23 +40,23 @@ class Products extends Simulation {
     }
     val products5 = {
       exec(
-        http("Products 5")
+        http("MF Products 5")
           .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/261099,427564,426068,426074,426069,900034,429961,423708,900137,426598,900573,908561")).pause(1)
     }
     val products6 = {
       exec(
-        http("Products 6")
+        http("MF Products 6")
           .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/900420,900421,701197,424008,701389,108024,108020,424234,424236,138117,420573,427809")).pause(1)
     }
     val products7 = {
       exec(
-        http("Products 7")
+        http("MF Products 7")
           .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/427714,506055,429584,428499,421958,424744,421375,264050,324071,324070")).pause(1)
 
     }
     val products8 = {
       exec(
-        http("Products 8")
+        http("MF Products 8")
           .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/products/324069,327091,236324,427185,236327,236400,236439,422700,426714,428282,426655")).pause(1)
     }
 
@@ -76,10 +76,17 @@ class Products extends Simulation {
     }
     val departmentsTree = {
       exec(
-        http("WEB Cyber-wow2")
-          .get("/department-tree?keyword=cyber-wow2")
+        http("WEB Cyber-INKA")
+          .get("/department-tree?keyword=cyber-inka")
       ).pause(1)
     }
+    val departmentsTreeMifa = {
+      exec(
+        http("WEB Cyber-MIFA")
+          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/department-tree?keyword=cyber-mifarma")
+      ).pause(1)
+    }
+
   }
 
   object Search {
@@ -103,7 +110,7 @@ class Products extends Simulation {
     val deeplinks = {
       exec(
         http("burts-bees-en-promocion")
-          .get("/department-tree?keyword=burts-bees-en-promocion"))
+          .get("/department-tree?keyword=pa%C3%B1ales-huggies-hiperpack-y-ninet"))
         .pause(1)
 
         .exec(
@@ -114,14 +121,14 @@ class Products extends Simulation {
 
         .exec(
           http("burts-bees-en-promocion")
-            .get("/department-tree?keyword=burts-bees-en-promocion"))
+            .get("/department-tree?keyword=pa%C3%B1ales-huggies-hiperpack-y-ninet"))
         .pause(1)
     }
   }
 
 
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/UAT")
+    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     //    .baseUrl("http://algoliauat.backend.cindibyinkafarma.com")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
@@ -138,10 +145,11 @@ class Products extends Simulation {
 
 
 //  val admin = scenario("Admins").exec(Search.searchFiltersProducts)
-  //  val admin = scenario("Admins").exec(Products.categories,Products.departmentsTree)
+//    val admin = scenario("Admins").exec(Products.categories,Products.departmentsTree,Products.departmentsTreeMifa)
   //  val users = scenario("Admins").exec(Home.deeplinks)
 //  val admin = scenario("Users").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8)
-  val admin = scenario("Admins").exec(Search.searchFiltersProducts, Home.deeplinks)
+//  val admin = scenario("Admins").exec(Search.searchFiltersProducts)
+  val admin = scenario("Admins").exec(Home.deeplinks)
     setUp(
       admin.inject(
         nothingFor(1),
