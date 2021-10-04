@@ -1,0 +1,10 @@
+{
+  "simulation": "com.gatling.simulations.Products",
+  "simulationId": "products",
+  "start": 1626536374254,
+  "description": "",
+  "scenarios": ["Users"],
+  "assertions": [
+
+  ]
+}

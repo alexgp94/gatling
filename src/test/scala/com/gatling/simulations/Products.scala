@@ -96,7 +96,7 @@ class Products extends Simulation {
         http("Search-filters")
           .post("/search-filters")
           .body(RawFileBody("data/search-filters.json")).asJson
-      )
+      ).pause(1)
 
         .exec(
           http("Filtered-products")
@@ -176,7 +176,7 @@ class Products extends Simulation {
   setUp(
     admin.inject(
       nothingFor(1),
-      rampUsers(1000) during (30 seconds)
+      rampUsers(500) during (30 seconds)
     )
       .protocols(httpConfig))
   /* setUp(

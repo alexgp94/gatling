@@ -1,0 +1,10 @@
+{
+  "simulation": "com.gatling.simulations.Mapi",
+  "simulationId": "mapi",
+  "start": 1629486629408,
+  "description": "",
+  "scenarios": ["Admins"],
+  "assertions": [
+
+  ]
+}

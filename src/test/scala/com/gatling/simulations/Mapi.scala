@@ -11,9 +11,14 @@ class Mapi extends Simulation {
   object Test {
     val test = {
       exec(
-        http("Test")
-          .get("/results/10/000000")
-      ).pause(1, 2)
+        http("colegiomedico")
+          .get("https://colegiomedico.org.pe/")
+      ).pause(1)
+
+//        .exec(
+//          http("AM / PM")
+//            .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD/deliveryinfo/schedule?day=2021-08-24&isToday=N&userAddressId=1796865&drugstoreId=0&deliveryTypeId=AM_PM")
+//        ).pause(1)
     }
   }
 
@@ -63,18 +68,32 @@ class Mapi extends Simulation {
 
 
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/UAT")
+  //    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/UAT")
     //    .baseUrl("https://api.resultadossep.eleccionesgenerales2021.pe")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhmNDMyMDRhMTc5MTVlOGJlN2NjZDdjYjI2NGRmNmVhMzgzYzQ5YWIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQWxleGFuZGVyIEdhcmNpYSIsInBpY3R1cmUiOiJodHRwczovL2xoNi5nb29nbGV1c2VyY29udGVudC5jb20vLXQxa01GNVg1eDZjL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUFBL0FNWnV1Y21zUk10YWl4bTNzWjcyRFFZSlc4SG5QaHVRY1Evczk2LWMvcGhvdG8uanBnIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2lua2FmYXJtYS11YXQiLCJhdWQiOiJpbmthZmFybWEtdWF0IiwiYXV0aF90aW1lIjoxNjI2MTE0NTIxLCJ1c2VyX2lkIjoiVkU3eVdwczZ5UE5IWjVjalhxem1SU0N0VnprMiIsInN1YiI6IlZFN3lXcHM2eVBOSFo1Y2pYcXptUlNDdFZ6azIiLCJpYXQiOjE2MjYyMTQ0NzAsImV4cCI6MTYyNjIxODA3MCwiZW1haWwiOiJhbGV4YW5kZXIuZ2FyY2lhQGlua2FmYXJtYWRpZ2l0YWwucGUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwODM5MjE5NTE4NTcyOTk4MjMwNiJdLCJlbWFpbCI6WyJhbGV4YW5kZXIuZ2FyY2lhQGlua2FmYXJtYWRpZ2l0YWwucGUiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.PUuxbCWb7bMN5UhRx67vdqy-Fxd_ID8axctZHg0PIdi3TJtHMHAzHWXc6-EtXVGxGCijGwezNBtCvex_Lcdu0LA5tucGDI2th0N_clAMfXcUmwweLxCk46X07_25ZdsqCOpQ75sg3KIWfKUessZMtYdO2VScIBNfoDvgvjlVFiYYJom4RElobKtt823dgzNJfQmhLbGGMza-24naNEiRlRv2EiYzuzYQn6F8ZE33iATiX6FtSVUN_3kll2EZq1anaKlFSwnS_t54xT4sJrCOg_H3lkijlEWHQMYP1b0PFu_ReuREW4Iemo-kMt6bnHxXc14lo8FJSNvT5bSa2tVcNA")
+    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkwMDk1YmM2ZGM2ZDY3NzkxZDdkYTFlZWIxYTU1OWEzZDViMmM0ODYiLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtcHJvZCIsImF1ZCI6Imlua2FmYXJtYS1wcm9kIiwiYXV0aF90aW1lIjoxNjI5Nzc0NjIwLCJ1c2VyX2lkIjoiOUkwNzE4NnpMZWJTVng2cDVSanlRWmFOM0VrMSIsInN1YiI6IjlJMDcxODZ6TGViU1Z4NnA1Ump5UVphTjNFazEiLCJpYXQiOjE2Mjk3Nzc5MjAsImV4cCI6MTYyOTc4MTUyMCwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJhbm9ueW1vdXMifX0.pEtfJLywkxgrVbzi3h5mKmmAGcz7P-b8EOI6GmuAgWEF3cLlS7lswbje7wsliX1G_SJQTK4sZ9rXmihZxUkF62Q3cbbjtp2bqqx5ndACLuOrsXgMaVbc5UppX5Ea-AgJ5-jv51jfWttjtdsRoy0QlBEuLRBn52dk7LsA4AdC0qTO-eg9nqwTMciIFWBsconOhkKPpAgM2yj28s09G4Nye1i5u9OqJLm9GL7uis0htNKN8W96Qn3JeEA8aHrvS7IwPEqyJz2wvhEjKlWOAVjO3A6pjzXn05tsVIe4s4dXQwkBP1YVaiNJKGZQ2Fgm2YWXEKJRLVAFQNXGH8t0D87L2g")
+
+//  val admin = scenario("Admins").exec(Test.test)
+//  setUp(
+//    admin.inject(
+//      constantConcurrentUsers(1000) during (300 seconds),
+//              rampConcurrentUsers(100) to (800) during (40 seconds)
+////                  .incrementConcurrentUsers(10)
+////                    .times(5)
+////                    .eachLevelLasting(20)
+////                    .separatedByRampsLasting(20 seconds)
+////                    .startingFrom(200)
+//    )
+//      .protocols(httpConfig))
 
 
-  val admin = scenario("Admins").exec(Mapi2.cart)
+
+  val admin = scenario("Admins").exec(Test.test)
   setUp(
     admin.inject(
       nothingFor(1),
-      rampUsers(2) during (4 seconds)
+      rampUsers(6000) during (100 seconds)
     ).protocols(httpConfig))
 
   //  setUp(
