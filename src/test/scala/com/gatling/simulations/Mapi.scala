@@ -8,19 +8,19 @@ import scala.language.postfixOps
 
 class Mapi extends Simulation {
 
-  object Test {
-    val test = {
-      exec(
-        http("colegiomedico")
-          .get("https://colegiomedico.org.pe/")
-      ).pause(1)
-
-//        .exec(
-//          http("AM / PM")
-//            .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD/deliveryinfo/schedule?day=2021-08-24&isToday=N&userAddressId=1796865&drugstoreId=0&deliveryTypeId=AM_PM")
-//        ).pause(1)
-    }
-  }
+//  object Test {
+//    val test = {
+//      exec(
+//        http("colegiomedico")
+//          .get("https://colegiomedico.org.pe/")
+//      ).pause(1)
+//
+////        .exec(
+////          http("AM / PM")
+////            .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD/deliveryinfo/schedule?day=2021-08-24&isToday=N&userAddressId=1796865&drugstoreId=0&deliveryTypeId=AM_PM")
+////        ).pause(1)
+//    }
+//  }
 
   object Mapi {
     val cart = {

@@ -146,12 +146,12 @@ class ProductsMF extends Simulation {
   setUp(
     users.inject(
       constantConcurrentUsers(2000) during (100 seconds)
-      //        rampConcurrentUsers(100) to (800) during (40 seconds)
-      //            incrementConcurrentUsers(10)
-      //              .times(5)
-      //              .eachLevelLasting(20)
-      //              .separatedByRampsLasting(20 seconds)
-      //              .startingFrom(200)
+//              rampConcurrentUsers(100) to (800) during (40 seconds),
+//                  incrementConcurrentUsers(10)
+//                    .times(5)
+//                    .eachLevelLasting(20)
+//                    .separatedByRampsLasting(20 seconds)
+//                    .startingFrom(200)
     )
       .protocols(httpConfig)
   )

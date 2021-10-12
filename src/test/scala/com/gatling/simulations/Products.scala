@@ -7,15 +7,6 @@ import scala.language.postfixOps
 
 class Products extends Simulation {
 
-  object Identify {
-    val identityDocumentType = {
-      exec(
-        http("Get identityDocumentType")
-          .get("/UAT/user/v2/api/identityDocumentType")
-      ).pause(1,2)
-    }
-  }
-
   object Products {
     val products1 = {
       exec(
@@ -27,7 +18,6 @@ class Products extends Simulation {
         http("Products 2")
           .get("/products/261327,238072,425029,428509,425278,424773,427122,427123,429265,429264,423594,425691,922782")).pause(1)
     }
-
     val products3 = {
       exec(
         http("Products 3")
@@ -65,25 +55,18 @@ class Products extends Simulation {
       exec(
         http("WEB Departments cyber-wow2")
           .get("/departments")
-      )
-      //        
+      ).pause(1)
     }
     val categories = {
       exec(
         http("APP Categories cyber-wow2")
           .get("/getcategories")
-      )
+      ).pause(1)
     }
     val departmentsTree = {
       exec(
         http("WEB Cyber-INKA")
           .get("/department-tree?keyword=cyber-inka")
-      ).pause(1)
-    }
-    val departmentsTreeMifa = {
-      exec(
-        http("WEB Cyber-MIFA")
-          .get("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD/department-tree?keyword=cyber-mifarma")
       ).pause(1)
     }
 
@@ -176,7 +159,7 @@ class Products extends Simulation {
   setUp(
     admin.inject(
       nothingFor(1),
-      rampUsers(500) during (30 seconds)
+      rampUsers(10) during (30 seconds)
     )
       .protocols(httpConfig))
   /* setUp(
