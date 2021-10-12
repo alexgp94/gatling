@@ -89,12 +89,12 @@ class Mapi extends Simulation {
 
 
 
-  val admin = scenario("Admins").exec(Test.test)
-  setUp(
-    admin.inject(
-      nothingFor(1),
-      rampUsers(6000) during (100 seconds)
-    ).protocols(httpConfig))
+//  val admin = scenario("Admins").exec(Test.test)
+//  setUp(
+//    admin.inject(
+//      nothingFor(1),
+//      rampUsers(6000) during (100 seconds)
+//    ).protocols(httpConfig))
 
   //  setUp(
   //    users.inject(

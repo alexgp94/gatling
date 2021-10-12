@@ -8,7 +8,7 @@ import scala.language.postfixOps
 
 class ProductsMF extends Simulation {
 
-  object Products {
+  object ProductsMF {
     val products1 = {
       exec(
         http("MF Products 1")
@@ -53,63 +53,64 @@ class ProductsMF extends Simulation {
     }
 
 
-    val departments = {
+    val departmentsMF = {
       exec(
-        http("WEB Departments")
+        http("WEB Departments Mifarma")
           .get("/departments")
       )
-      //        
+      //
     }
-    val categories = {
+    val categoriesMF = {
       exec(
-        http("APP Categories")
+        http("APP Categories Mifarma")
           .get("/getcategories")
       )
     }
-    val departmentsTree = {
+    val departmentsTreeMF = {
       exec(
-        http("Promociones Exclusivas")
+        http("Promociones Exclusivas Mifarma")
           .get("/department-tree?keyword=promociones-exclusivas")
       )
     }
   }
 
-  object Search {
+  object SearchMF {
     val searchFiltersProductsMF = {
       //      repeat(1) {
       exec(
-        http("MF Search-filters")
+        http("Search-filters Mifarma")
           .post("/search-filters")
           .body(RawFileBody("data/search-filters.json")).asJson
       )
 
         .exec(
-          http("MF Filtered-products")
+          http("Filtered-products Mifarma")
             .post("/filtered-products")
             .body(RawFileBody("data/filtered-products.json")).asJson
         ) //
     }
   }
 
-  object Home {
-    val deeplinks = {
+  object HomeMF {
+    val deeplinksMF = {
       exec(
-        http("MF burts-bees-en-promocion")
-          .get("/department-tree?keyword=burts-bees-en-promocion"))
+        http("deeplinks MF")
+          .get("/department-tree?keyword=loreal-descuentos"))
         .pause(1)
 
         .exec(
-          http("MF Filtered-Products")
+          http("Filtered-Products MF")
             .post("/filtered-products")
-            .body(RawFileBody("data/MFdeeplink-filtered-products.json")).asJson)
+            .body(RawFileBody("data/deeplink-filtered-productsMF.json")).asJson)
         .pause(1)
 
         .exec(
-          http("MF burts-bees-en-promocion")
-            .get("/department-tree?keyword=burts-bees-en-promocion"))
+          http("deeplinks MF")
+            .get("/department-tree?keyword=loreal-descuentos"))
         .pause(1)
     }
   }
+
 
 
   val httpConfig = http
@@ -120,7 +121,7 @@ class ProductsMF extends Simulation {
     .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjOGUyYjI5NmM2ZjMyODRlYzMwYjg4NjVkNzI5M2U2MjdmYTJiOGYiLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtcHJvZCIsImF1ZCI6Imlua2FmYXJtYS1wcm9kIiwiYXV0aF90aW1lIjoxNjE4NjkxMTI1LCJ1c2VyX2lkIjoiTGI3YmtNYkdnWVhPRHF6S2U1V1k2dWdTbFp0MiIsInN1YiI6IkxiN2JrTWJHZ1lYT0RxektlNVdZNnVnU2xadDIiLCJpYXQiOjE2MTg3MDU4MTcsImV4cCI6MTYxODcwOTQxNywiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJhbm9ueW1vdXMifX0.iR8CZOdB0NPTsVexvyEApNjVlgZtE8dHxAgMSAgi2TkFVXIpEO0MXHhx6EygdvkXP9IT_YuLDDnLxCLF18vXveUFvV8yGgNy8TONpc33B-7NbzheLxiQwoXwjloKI6NAhOcppFChU4cBz2PisdQrXA1X1JzD6m9DMAV_2sc5RBGczNysS1foW--8t8GZ2554C70ICDsIDTMVYwWf-Qn8YkISw9r1WxDn0lAkY1Ge9OGMpOByU7g8UKLLwpFWHM61Qi7gIQniHI31s5gXOud7b1TMhyLZ9aUQ8_9hh-MNarNaCi4Qe9ZO88IH4SAos8MhaOjxOGfCIvTQDA9GlFR69A")
 
   //    val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
-      val users = scenario("Users").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8)
+      val users = scenario("Users").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8)
   //  val users = scenario("Users").exec(Products.products1, Products.products2)
   //    val users = scenario("Users").exec(Products.searchFilters)
   //    val users = scenario("Admins").exec(Products.departments, Products.categories, Products.departmentsTree)
