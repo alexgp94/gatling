@@ -122,7 +122,7 @@ class ProductsMF extends Simulation {
 
   val searchProducts = scenario("Users Search Products").exec(SearchMF.searchFiltersProductsMF)
 
-  val allProducts = scenario("Users Products").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8,ProductsMF.departmentsMF, ProductsMF.categoriesMF, HomeMF.deeplinksMF, SearchMF.searchFiltersProductsMF)
+  val allProducts = scenario("Users Products").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8, ProductsMF.departmentsMF, ProductsMF.categoriesMF, HomeMF.deeplinksMF, SearchMF.searchFiltersProductsMF)
   //  setUp(
   //    searchProducts.inject(
   //      nothingFor(1),
@@ -140,6 +140,6 @@ class ProductsMF extends Simulation {
       //                    .startingFrom(200)
     )
       .protocols(httpConfig))
-//    .maxDuration(2 minute)
-  
+  //    .maxDuration(2 minute)
+}
 //mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsMF
