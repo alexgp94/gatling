@@ -102,7 +102,6 @@ class Products extends Simulation {
   }
 
 
-
   val httpConfig = http
     .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     .header("Content-Type", "application/json")
@@ -119,7 +118,7 @@ class Products extends Simulation {
 
   val searchProducts = scenario("Users Search Products").exec(Search.searchFiltersProducts)
 
-  val allProducts = scenario("Users Products").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8,Products.departments, Products.categories, Home.deeplinks, Search.searchFiltersProducts)
+  val allProducts = scenario("Users Products").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8, Products.departments, Products.categories, Home.deeplinks, Search.searchFiltersProducts)
 
   //  setUp(
   //    products.inject(
@@ -163,17 +162,17 @@ class Products extends Simulation {
   //    )
   //      .protocols(httpConfig))
   setUp(
-    allProducts.inject(
-      constantConcurrentUsers(20) during (10 seconds),
-              rampConcurrentUsers(20) to (40) during (10 seconds),
-//                  incrementConcurrentUsers(10)
-//                    .times(5)
-//                    .eachLevelLasting(20)
-//                    .separatedByRampsLasting(20 seconds)
-//                    .startingFrom(200)
+    products.inject(
+      constantConcurrentUsers(2000) during (180 seconds),
+      rampConcurrentUsers(20) to (40) during (10 seconds),
+      //                  incrementConcurrentUsers(10)
+      //                    .times(5)
+      //                    .eachLevelLasting(20)
+      //                    .separatedByRampsLasting(20 seconds)
+      //                    .startingFrom(200)
     )
       .protocols(httpConfig))
-//    .maxDuration(2 minute)
+  //    .maxDuration(2 minute)
 
 
 }
