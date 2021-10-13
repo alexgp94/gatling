@@ -55,21 +55,15 @@ class ProductsMF extends Simulation {
 
     val departmentsMF = {
       exec(
-        http("WEB Departments Mifarma")
+        http("WEB Departments MF")
           .get("/departments")
       )
       //
     }
     val categoriesMF = {
       exec(
-        http("APP Categories Mifarma")
+        http("APP Categories MF")
           .get("/getcategories")
-      )
-    }
-    val departmentsTreeMF = {
-      exec(
-        http("Promociones Exclusivas Mifarma")
-          .get("/department-tree?keyword=promociones-exclusivas")
       )
     }
   }
@@ -78,13 +72,13 @@ class ProductsMF extends Simulation {
     val searchFiltersProductsMF = {
       //      repeat(1) {
       exec(
-        http("Search-filters Mifarma")
+        http("Search Filters MF")
           .post("/search-filters")
           .body(RawFileBody("data/search-filters.json")).asJson
       )
 
         .exec(
-          http("Filtered-products Mifarma")
+          http("Filtered Products MF")
             .post("/filtered-products")
             .body(RawFileBody("data/filtered-products.json")).asJson
         ) //
@@ -94,70 +88,58 @@ class ProductsMF extends Simulation {
   object HomeMF {
     val deeplinksMF = {
       exec(
-        http("deeplinks MF")
+        http("Deeplinks MF")
           .get("/department-tree?keyword=loreal-descuentos"))
         .pause(1)
 
         .exec(
-          http("Filtered-Products MF")
+          http("Filtered Products MF")
             .post("/filtered-products")
             .body(RawFileBody("data/deeplink-filtered-productsMF.json")).asJson)
         .pause(1)
 
         .exec(
-          http("deeplinks MF")
+          http("Deeplinks MF")
             .get("/department-tree?keyword=loreal-descuentos"))
         .pause(1)
     }
   }
 
 
-
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD")
-    //    .baseUrl("http://algoliauat.backend.cindibyinkafarma.com")
+    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("x-access-token", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJjOGUyYjI5NmM2ZjMyODRlYzMwYjg4NjVkNzI5M2U2MjdmYTJiOGYiLCJ0eXAiOiJKV1QifQ.eyJwcm92aWRlcl9pZCI6ImFub255bW91cyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9pbmthZmFybWEtcHJvZCIsImF1ZCI6Imlua2FmYXJtYS1wcm9kIiwiYXV0aF90aW1lIjoxNjE4NjkxMTI1LCJ1c2VyX2lkIjoiTGI3YmtNYkdnWVhPRHF6S2U1V1k2dWdTbFp0MiIsInN1YiI6IkxiN2JrTWJHZ1lYT0RxektlNVdZNnVnU2xadDIiLCJpYXQiOjE2MTg3MDU4MTcsImV4cCI6MTYxODcwOTQxNywiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6e30sInNpZ25faW5fcHJvdmlkZXIiOiJhbm9ueW1vdXMifX0.iR8CZOdB0NPTsVexvyEApNjVlgZtE8dHxAgMSAgi2TkFVXIpEO0MXHhx6EygdvkXP9IT_YuLDDnLxCLF18vXveUFvV8yGgNy8TONpc33B-7NbzheLxiQwoXwjloKI6NAhOcppFChU4cBz2PisdQrXA1X1JzD6m9DMAV_2sc5RBGczNysS1foW--8t8GZ2554C70ICDsIDTMVYwWf-Qn8YkISw9r1WxDn0lAkY1Ge9OGMpOByU7g8UKLLwpFWHM61Qi7gIQniHI31s5gXOud7b1TMhyLZ9aUQ8_9hh-MNarNaCi4Qe9ZO88IH4SAos8MhaOjxOGfCIvTQDA9GlFR69A")
+    .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDA3NzUzOSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MDgxMTM5LCJpYXQiOjE2MzQwNzc1MzksInZlcnNpb24iOjIsImp0aSI6IjMxNWVjYzc5LWJjMTktNDBjOS05MWQ4LTViMTY2ODFjZjM0NyIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.RbHFzAZzcLcD1Kg-Rroj69PyuQQwJ3-NeWNSXESMzSXvZFvY8qg-UlII9Z7KY2OKde6WfCBIGSUEqkLwC0p3XYBYbb9JPmlrNUBx4s78FBaIS2clR72zOkhpYmysmMliCmm02uTpph8bhUbcv9F1-_zORLjoTdYQ6wp62dBTKZGWiOtiXzEm5M5d3ny3Bq0vOfX-7zD4TIpBmFNSaWzVJLLubtgJnFDzKwce-f24gyST5gmQjEOoF_LO6zlJBMpJFeWSUtAVkaNV02_l0d_ivhHICLc50oIZdZmSWlMM1d0AnvCxYmYaa-j9RA_7jzWSeQs7s0xdkB-3pqu0tdyRmQ")
+    .header("x-access-token", "")
 
-  //    val users = scenario("Users").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
-      val users = scenario("Users").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8)
-  //  val users = scenario("Users").exec(Products.products1, Products.products2)
-  //    val users = scenario("Users").exec(Products.searchFilters)
-  //    val users = scenario("Admins").exec(Products.departments, Products.categories, Products.departmentsTree)
-  //    val users = scenario("Admins").exec(Products.filteredProducts)
-  //  val admins = scenario("Admins").exec(Products.products1, Products.products2, Products.departments, Products.categories, Products.departmentsTree, Products.searchFilters, Products.filteredProducts)
-  //  val users = scenario("Users").exec(Identify.identityDocumentType)
 
-//  val admin = scenario("Admins").exec(Search.searchFiltersProductsMF, Home.deeplinks)
-  //  val users = scenario("Admins").exec(Home.deeplinks)
+  val products = scenario("Users Products").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8)
 
+  val departmentsCategories = scenario("Users departmentsCategories").exec(ProductsMF.departmentsMF, ProductsMF.categoriesMF)
+
+  val deeplinks = scenario("Users Deeplinks").exec(HomeMF.deeplinksMF)
+
+  val searchProducts = scenario("Users Search Products").exec(SearchMF.searchFiltersProductsMF)
+
+  val allProducts = scenario("Users Products").exec(ProductsMF.products1, ProductsMF.products2, ProductsMF.products3, ProductsMF.products4, ProductsMF.products5, ProductsMF.products6, ProductsMF.products7, ProductsMF.products8,ProductsMF.departmentsMF, ProductsMF.categoriesMF, HomeMF.deeplinksMF, SearchMF.searchFiltersProductsMF)
   //  setUp(
-  //    admin.inject(
+  //    searchProducts.inject(
   //      nothingFor(1),
-  //      //                  atOnceUsers(4000)
-  //      rampUsers(2000) during (60 seconds)
-  ////            constantUsersPerSec(2000) during (60 second))
-  ////            .throttle(reachRps(100) in (40 second)
-  //      //            constantUsersPerSec(20) during (10),                    //numberOfRequests = (constantUsersPerSec * during)
-  //      //            rampUsersPerSec(50) to (100) during (10 seconds))      //numberOfRequests = (averageRampUsersPerSec * during)
-  //    ).protocols(httpConfig))
-
-
+  //      rampUsers(10) during (30 seconds)
+  //    )
+  //      .protocols(httpConfig))
   setUp(
-    users.inject(
-      constantConcurrentUsers(2000) during (100 seconds)
-//              rampConcurrentUsers(100) to (800) during (40 seconds),
-//                  incrementConcurrentUsers(10)
-//                    .times(5)
-//                    .eachLevelLasting(20)
-//                    .separatedByRampsLasting(20 seconds)
-//                    .startingFrom(200)
+    allProducts.inject(
+      constantConcurrentUsers(20) during (10 seconds),
+      rampConcurrentUsers(20) to (40) during (10 seconds),
+      //                  incrementConcurrentUsers(10)
+      //                    .times(5)
+      //                    .eachLevelLasting(20)
+      //                    .separatedByRampsLasting(20 seconds)
+      //                    .startingFrom(200)
     )
-      .protocols(httpConfig)
-  )
-    .maxDuration(2 minute)
-}
-
-
+      .protocols(httpConfig))
+//    .maxDuration(2 minute)
+  
 //mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsMF
