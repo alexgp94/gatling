@@ -106,7 +106,7 @@ class Products extends Simulation {
     .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDEwMDI0NCwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MTAzODQ0LCJpYXQiOjE2MzQxMDAyNDQsInZlcnNpb24iOjIsImp0aSI6IjdmN2E5YTUyLTQwMGMtNDVmMi1hZjJiLTI4MjE3MjY5NzIxZCIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.TUzx7c_mBPX1D6fcFhQPguBaq1QmUW83F3xz9cnLf0HdxawNvTXF6BFDu0GObiTPetw_sZJTJrqxfntfdAOWX2t0aSKUf_nmr4aK_FzBdwP6kG-1lbkjvwJ2CAp8iZQJU0N3Cnsdmy-JvKTtCp5kQ8A9hpXf2FJqLfUGSWv5RbmaVHHRTcDxAP-EfBvtAdegf1OyYQ26wHTm46KG4if9EUCzQGugSDai8gTojl5UVqxpy07tT44A6dZdOoU0Xf-qXxQ7fk2P1RYzPGsXYv7LuPRozTIe942yXZtzkm4w3EUK6SN0zh0MNunbAdMK5djAX3ySGh9cdFPeAGJypewW0Q")
+    .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDM2MzU2MSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MzY3MTYxLCJpYXQiOjE2MzQzNjM1NjEsInZlcnNpb24iOjIsImp0aSI6IjkwYmJjNTg0LTk1NDMtNDhmNy05YWM0LTk4OWQ3MjVjNzljYSIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.N5ntka55yJrm4hyk0SQyLTSE0759OQn6RiHCODqetrI9ZGAvevxr6sc99e8jPoNIUQcL_lwbrGc-3yYxwRPT-km7YCbFOIBJSfS1hBSPgk7PcfJPgIRFa5xSmdmLK5qntmiJ8sUdRcJRSFs1OvAmzLkH4gsjXRgxzPab6mnhY_hgZEwcjgGK_MocD-PuPIHRklr5fE80VcXP56UynBacvsCehtRoZ-k9M0GnBHfkIyAXeOksoBCQBw7mxMAYoH0geqXwevyZ2c2FJq2cCI2DTXbJARskmX6rFY61EmkiSzUAiIfGDnztsF07ByTSBIRHOgfFRdTmYxM4Sq0jBaMqZQ")
     .header("x-access-token", "")
 
 
@@ -163,7 +163,7 @@ class Products extends Simulation {
   //      .protocols(httpConfig))
   setUp(
     products.inject(
-      constantConcurrentUsers(4000) during (180 seconds),
+      constantConcurrentUsers(2000) during (180 seconds),
 //      rampConcurrentUsers(2000) to (4000) during (60 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
