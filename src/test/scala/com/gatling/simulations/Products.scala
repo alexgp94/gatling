@@ -163,7 +163,7 @@ class Products extends Simulation {
   //      .protocols(httpConfig))
   setUp(
     products.inject(
-      constantConcurrentUsers(500) during (60 seconds),
+      constantConcurrentUsers(200) during (60 seconds),
 //      rampConcurrentUsers(2000) to (4000) during (60 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
