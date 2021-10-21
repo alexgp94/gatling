@@ -103,7 +103,7 @@ class Products extends Simulation {
 
 
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/UAT")
+    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
     .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDM2MzU2MSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MzY3MTYxLCJpYXQiOjE2MzQzNjM1NjEsInZlcnNpb24iOjIsImp0aSI6IjkwYmJjNTg0LTk1NDMtNDhmNy05YWM0LTk4OWQ3MjVjNzljYSIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.N5ntka55yJrm4hyk0SQyLTSE0759OQn6RiHCODqetrI9ZGAvevxr6sc99e8jPoNIUQcL_lwbrGc-3yYxwRPT-km7YCbFOIBJSfS1hBSPgk7PcfJPgIRFa5xSmdmLK5qntmiJ8sUdRcJRSFs1OvAmzLkH4gsjXRgxzPab6mnhY_hgZEwcjgGK_MocD-PuPIHRklr5fE80VcXP56UynBacvsCehtRoZ-k9M0GnBHfkIyAXeOksoBCQBw7mxMAYoH0geqXwevyZ2c2FJq2cCI2DTXbJARskmX6rFY61EmkiSzUAiIfGDnztsF07ByTSBIRHOgfFRdTmYxM4Sq0jBaMqZQ")
