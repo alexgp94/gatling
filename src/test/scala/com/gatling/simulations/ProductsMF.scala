@@ -107,7 +107,7 @@ class ProductsMF extends Simulation {
 
 
   val httpConfig = http
-    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
+    .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/MFPRD")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
     .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDA3NzUzOSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MDgxMTM5LCJpYXQiOjE2MzQwNzc1MzksInZlcnNpb24iOjIsImp0aSI6IjMxNWVjYzc5LWJjMTktNDBjOS05MWQ4LTViMTY2ODFjZjM0NyIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.RbHFzAZzcLcD1Kg-Rroj69PyuQQwJ3-NeWNSXESMzSXvZFvY8qg-UlII9Z7KY2OKde6WfCBIGSUEqkLwC0p3XYBYbb9JPmlrNUBx4s78FBaIS2clR72zOkhpYmysmMliCmm02uTpph8bhUbcv9F1-_zORLjoTdYQ6wp62dBTKZGWiOtiXzEm5M5d3ny3Bq0vOfX-7zD4TIpBmFNSaWzVJLLubtgJnFDzKwce-f24gyST5gmQjEOoF_LO6zlJBMpJFeWSUtAVkaNV02_l0d_ivhHICLc50oIZdZmSWlMM1d0AnvCxYmYaa-j9RA_7jzWSeQs7s0xdkB-3pqu0tdyRmQ")
@@ -131,7 +131,7 @@ class ProductsMF extends Simulation {
   //      .protocols(httpConfig))
   setUp(
     allProducts.inject(
-      constantConcurrentUsers(2000) during (180 seconds),
+      constantConcurrentUsers(2000) during (120 seconds),
 //      rampConcurrentUsers(20) to (40) during (10 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
