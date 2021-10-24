@@ -4,7 +4,7 @@ pipeline {
         stage('Build') { 
             steps {
                 echo "Build Step"
-				sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.Products'
+				sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsMF'
             }
         }
         stage('Metrics') { 
