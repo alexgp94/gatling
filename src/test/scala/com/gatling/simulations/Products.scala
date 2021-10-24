@@ -68,7 +68,7 @@ class Products extends Simulation {
     val deeplinks = {
       exec(
         http("Deeplinks IKF")
-          .get("/department-tree?keyword=proteccion-solar---mascarillas---alcohol"))
+          .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho"))
         .pause(1)
 
         .exec(
@@ -79,7 +79,7 @@ class Products extends Simulation {
 
         .exec(
           http("Deeplinks IKF")
-            .get("/department-tree?keyword=proteccion-solar---mascarillas---alcohol"))
+            .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho"))
         .pause(1)
     }
   }
@@ -106,7 +106,7 @@ class Products extends Simulation {
     .baseUrl("https://td2fvf3nfk.execute-api.us-east-1.amazonaws.com/PROD")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("authorization", "eyJraWQiOiJ0bWxBdm1RQXBZT3hCYU5xQTBSREZjRG5JMjhnT1hiamxrUUJTSEZwSldrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MDIyYTJxdjg0YzhybWE0MTNyMzY4OGJrcSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidGhpcmRfcGFydHlfcnNcL2FwaSIsImF1dGhfdGltZSI6MTYzNDM2MzU2MSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfajNFUFRoRTBNIiwiZXhwIjoxNjM0MzY3MTYxLCJpYXQiOjE2MzQzNjM1NjEsInZlcnNpb24iOjIsImp0aSI6IjkwYmJjNTg0LTk1NDMtNDhmNy05YWM0LTk4OWQ3MjVjNzljYSIsImNsaWVudF9pZCI6IjQwMjJhMnF2ODRjOHJtYTQxM3IzNjg4YmtxIn0.N5ntka55yJrm4hyk0SQyLTSE0759OQn6RiHCODqetrI9ZGAvevxr6sc99e8jPoNIUQcL_lwbrGc-3yYxwRPT-km7YCbFOIBJSfS1hBSPgk7PcfJPgIRFa5xSmdmLK5qntmiJ8sUdRcJRSFs1OvAmzLkH4gsjXRgxzPab6mnhY_hgZEwcjgGK_MocD-PuPIHRklr5fE80VcXP56UynBacvsCehtRoZ-k9M0GnBHfkIyAXeOksoBCQBw7mxMAYoH0geqXwevyZ2c2FJq2cCI2DTXbJARskmX6rFY61EmkiSzUAiIfGDnztsF07ByTSBIRHOgfFRdTmYxM4Sq0jBaMqZQ")
+    .header("authorization", "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhmYmRmMjQxZTdjM2E2NTEzNTYwNmRkYzFmZWQyYzU1MjI2MzBhODciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiYWxleGFuZGVyIGdhcmNpYSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHakFwVnpRd2d0SFF3NHpvODZRb3hKbkNrU2ZDekFSSjRLREh3MmsiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vaW5rYWZhcm1hLXByb2QiLCJhdWQiOiJpbmthZmFybWEtcHJvZCIsImF1dGhfdGltZSI6MTYzMjUyMzUxNSwidXNlcl9pZCI6IlZQQm9xWElNR2lPelhTVnZFOXdaa0RCOEV3ZTIiLCJzdWIiOiJWUEJvcVhJTUdpT3pYU1Z2RTl3WmtEQjhFd2UyIiwiaWF0IjoxNjM1MDU3ODA4LCJleHAiOjE2MzUwNjE0MDgsImVtYWlsIjoiYWxleGNncDk0QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE2MjQzNDI3ODc5NDUwODgwNjI1Il0sImVtYWlsIjpbImFsZXhjZ3A5NEBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.f-ZWC3NdmUbvvi557fQICO8wamJHrdfAroP94SuK-ciVYyJ4thWNFWKTYjih_qIENtUMzI963unW8pWCGf_WZ3ya3LQEcFBQ2_cjhBJs39A-j5nFww3bVE8A8UrJK4zObgs8ArtUyAYBjI-fIAbOh2gAkh6SnE3fotqlmPVcVHd85s-U8pOW39gUczP_l3Z5OJSskQid3DgxXqij1Xp9R1hIdlk06dCIJM5XscoPFXt_Y7plSL-OBncwZwks5PbWujqLY_JzyzswVo6UY6e7npb2H_YtqHm7tpq-diqhQBSRl2e0mZriMvAiizeFH2oPUifqgHTlyBeFr0tErTKIiQ")
     .header("x-access-token", "")
 
 
@@ -162,7 +162,7 @@ class Products extends Simulation {
   //    )
   //      .protocols(httpConfig))
   setUp(
-    products.inject(
+    deeplinks.inject(
       constantConcurrentUsers(2000) during (120 seconds),
 //      rampConcurrentUsers(2000) to (4000) during (60 seconds),
       //                  incrementConcurrentUsers(10)
