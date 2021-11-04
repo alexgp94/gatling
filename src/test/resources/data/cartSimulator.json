@@ -1,0 +1,22 @@
+{
+  "latitude": "-11.99523000",
+  "longitude": "-77.07186000",
+  "country": "PER",
+  "items": [
+    {
+      "id": "1627327870698",
+      "quantity": 1,
+      "seller": "testfarmaciasperuanas"
+    },
+    {
+      "id": "1624567950000",
+      "quantity": 1,
+      "seller": "testfarmaciasperuanas"
+    },
+    {
+      "id": "1624293016635",
+      "quantity": 2,
+      "seller": "testfarmaciasperuanas"
+    }
+  ]
+}
