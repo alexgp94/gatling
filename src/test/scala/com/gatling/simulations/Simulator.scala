@@ -13,14 +13,15 @@ class Simulator extends Simulation {
       //      repeat(1) {
       exec(
         http("Cart Simulator")
-          .post("/IKF/testfarmaciasperuanas")
+//          .post("/IKF/testfarmaciasperuanas")
+          .post("https://intercorp-mp-non-vtex-qa.mysellercenter.com/marketplace/testfarmaciasperuanas/simulation?an=farmacias-peruanas")
           .body(RawFileBody("data/cartSimulator.json")).asJson
       ).pause(1)
     }
   }
 
   val httpConfig = http
-    .baseUrl("http://sellercenteruat.backend.cindibyinkafarma.com/sellercenter/create/simulationCart")
+//    .baseUrl("http://sellercenteruat.backend.cindibyinkafarma.com/sellercenter/create/simulationCart/")
     .header("Content-Type", "application/json")
 
  val cartSimulator = scenario("Users CartSimulator").exec(Simulator.CartSimulator)

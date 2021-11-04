@@ -1,21 +1,10 @@
 {
-  "latitude": "-11.99523000",
-  "longitude": "-77.07186000",
   "country": "PER",
+  "postalCode": "150141",
   "items": [
     {
-      "id": "1627327870698",
+      "id": "1620661186818",
       "quantity": 1,
-      "seller": "testfarmaciasperuanas"
-    },
-    {
-      "id": "1624567950000",
-      "quantity": 1,
-      "seller": "testfarmaciasperuanas"
-    },
-    {
-      "id": "1624293016635",
-      "quantity": 2,
       "seller": "testfarmaciasperuanas"
     }
   ]
