@@ -34,7 +34,7 @@ class Simulator extends Simulation {
 
   setUp(
     cartSimulator.inject(
-      constantConcurrentUsers(500) during (60 seconds),
+      constantConcurrentUsers(200) during (30 seconds),
 //      rampConcurrentUsers(20) to (40) during (10 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
