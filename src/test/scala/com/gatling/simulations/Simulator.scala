@@ -12,7 +12,7 @@ class Simulator extends Simulation {
     val CartSimulator = {
       //      repeat(1) {
       exec(
-        http("Cart Simulator")
+        http("revgeocode.search.hereapi")
 //          .post("/IKF/testfarmaciasperuanas")
 //          .post("https://intercorp-mp-non-vtex-qa.mysellercenter.com/marketplace/testfarmaciasperuanas/simulation?an=farmacias-peruanas")
           .get("https://revgeocode.search.hereapi.com/v1/revgeocode?at=-11.99523,-77.07186&lang=es-PE&types=address&apiKey=94HLp-xcC0zzqlh5WDoeAlTvQxh5DWtqoiVYqxqZG_g")
@@ -36,7 +36,7 @@ class Simulator extends Simulation {
 
   setUp(
     cartSimulator.inject(
-      constantConcurrentUsers(500) during (30 seconds),
+      constantConcurrentUsers(200) during (30 seconds),
 //      rampConcurrentUsers(20) to (40) during (10 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
