@@ -14,8 +14,9 @@ class Simulator extends Simulation {
       exec(
         http("Cart Simulator")
 //          .post("/IKF/testfarmaciasperuanas")
-          .post("https://intercorp-mp-non-vtex-qa.mysellercenter.com/marketplace/testfarmaciasperuanas/simulation?an=farmacias-peruanas")
-          .body(RawFileBody("data/cartSimulator.json")).asJson
+//          .post("https://intercorp-mp-non-vtex-qa.mysellercenter.com/marketplace/testfarmaciasperuanas/simulation?an=farmacias-peruanas")
+          .get("https://revgeocode.search.hereapi.com/v1/revgeocode?at=-11.99523,-77.07186&lang=es-PE&types=address&apiKey=94HLp-xcC0zzqlh5WDoeAlTvQxh5DWtqoiVYqxqZG_g")
+//          .body(RawFileBody("data/cartSimulator.json")).asJson
       ).pause(1)
     }
   }
@@ -35,7 +36,7 @@ class Simulator extends Simulation {
 
   setUp(
     cartSimulator.inject(
-      constantConcurrentUsers(200) during (30 seconds),
+      constantConcurrentUsers(500) during (30 seconds),
 //      rampConcurrentUsers(20) to (40) during (10 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
