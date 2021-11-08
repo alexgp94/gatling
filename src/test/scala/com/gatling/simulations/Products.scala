@@ -162,8 +162,8 @@ class Products extends Simulation {
   //    )
   //      .protocols(httpConfig))
   setUp(
-    deeplinks.inject(
-      constantConcurrentUsers(2000) during (120 seconds),
+    products.inject(
+      constantConcurrentUsers(50) during (10 seconds),
 //      rampConcurrentUsers(2000) to (4000) during (60 seconds),
       //                  incrementConcurrentUsers(10)
       //                    .times(5)
