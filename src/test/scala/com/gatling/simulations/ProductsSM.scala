@@ -16,7 +16,7 @@ class ProductsSM extends Simulation {
   }
 
   def userCount: Int = getProperty("USERS", "5").toInt
-  def environment: Int = getProperty("ENVIRONMENT", "PRD").toInt
+  def environment: Int = getProperty("ENVIRONMENT", "PROD").toInt
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
   def testDuration: Int = getProperty("DURATION", "60").toInt
 
