@@ -20,7 +20,7 @@ class ProductsSM extends Simulation {
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
   def testDuration: Int = getProperty("DURATION", "60").toInt
 
-  val environments: Int = ${environment}
+  val environments = s"${environment}"
   val domain = "5doa19p9r7.execute-api.us-east-1.amazonaws.com"
   val httpProtocol = http
     .baseUrl("https://" + domain + "/" + environments)
