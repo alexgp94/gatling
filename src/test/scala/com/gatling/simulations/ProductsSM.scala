@@ -15,8 +15,8 @@ class ProductsSM extends Simulation {
       .getOrElse(defaultValue)
   }
 
+  def environment: String = getProperty("ENVIRONMENT", "PROD")
   def userCount: Int = getProperty("USERS", "5").toInt
-  def environment: Int = getProperty("ENVIRONMENT", "PROD").toInt
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
   def testDuration: Int = getProperty("DURATION", "60").toInt
 
@@ -43,13 +43,13 @@ class ProductsSM extends Simulation {
     def maxPause: FiniteDuration = 1000.milliseconds
     def products = {
       exec(Products.products1).pause(minPause)
-      exec(Products.products2).pause(minPause)
-      exec(Products.products3).pause(minPause)
-      exec(Products.products4).pause(minPause)
-      exec(Products.products5).pause(minPause)
-      exec(Products.products6).pause(minPause)
-      exec(Products.products7).pause(minPause)
-      exec(Products.products8).pause(minPause)
+      .exec(Products.products2).pause(minPause)
+      .exec(Products.products3).pause(minPause)
+      .exec(Products.products4).pause(minPause)
+      .exec(Products.products5).pause(minPause)
+      .exec(Products.products6).pause(minPause)
+      .exec(Products.products7).pause(minPause)
+      .exec(Products.products8).pause(minPause)
     }
 
     def categories()={
@@ -61,7 +61,7 @@ class ProductsSM extends Simulation {
     def default = scenario("Default Load Test")
       .during(testDuration.seconds) {
         randomSwitch(
-          75d -> exec(UserJourneys.products)
+          100d -> exec(UserJourneys.products)
           //          15d -> exec(UserJourneys.abandonCart),
           //          10d -> exec(UserJourneys.completePurchase)
         )
