@@ -133,7 +133,7 @@ class ProductsSM extends Simulation {
   //      rampUsers(10) during (30 seconds)
   //    )
   //      .protocols(httpConfig))
-  setUp(
+/*  setUp(
     products.inject(
       constantConcurrentUsers(50) during (10 seconds),
 //      rampConcurrentUsers(2000) to (4000) during (60 seconds),
@@ -143,7 +143,7 @@ class ProductsSM extends Simulation {
       //                    .separatedByRampsLasting(20 seconds)
       //                    .startingFrom(200)
     )
-      .protocols(httpConfig))
+      .protocols(httpConfig))*/
   //    .maxDuration(2 minute)
 
 
