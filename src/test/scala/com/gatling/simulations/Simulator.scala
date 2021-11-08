@@ -19,9 +19,9 @@ class Simulator extends Simulation {
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
   def testDuration: Int = getProperty("DURATION", "60").toInt
 
-  val environmentt = ${
-    environment
-  }
+//  val environmentt = ${
+//    environment
+//  }
   val domain = "intercorp-mp-non-vtex-qa.mysellercenter.com"
 
   val httpProtocol = http
