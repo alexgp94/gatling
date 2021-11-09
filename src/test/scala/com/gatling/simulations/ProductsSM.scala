@@ -1,6 +1,6 @@
 package com.gatling.simulations
 
-import com.gatling.products.Products
+import com.gatling.products.{Categories, Deeplinks, Products, SearchProducts}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -40,29 +40,41 @@ class ProductsSM extends Simulation {
 
   object UserJourneys {
     def minPause: FiniteDuration = 200.milliseconds
-    def maxPause: FiniteDuration = 1000.milliseconds
+    def maxPause: FiniteDuration = 800.milliseconds
     def products = {
-      exec(Products.products1).pause(minPause)
-      .exec(Products.products2).pause(minPause)
-      .exec(Products.products3).pause(minPause)
-      .exec(Products.products4).pause(minPause)
-      .exec(Products.products5).pause(minPause)
-      .exec(Products.products6).pause(minPause)
-      .exec(Products.products7).pause(minPause)
-      .exec(Products.products8).pause(minPause)
+       exec(Products.products1).pause(minPause, maxPause)
+      .exec(Products.products2).pause(minPause, maxPause)
+      .exec(Products.products3).pause(minPause, maxPause)
+      .exec(Products.products4).pause(minPause, maxPause)
+      .exec(Products.products5).pause(minPause, maxPause)
+      .exec(Products.products6).pause(minPause, maxPause)
+      .exec(Products.products7).pause(minPause, maxPause)
+      .exec(Products.products8).pause(minPause, maxPause)
     }
 
     def categories()={
-
+       exec(Categories.departments).pause(minPause, maxPause)
+      .exec(Categories.categories).pause(minPause, maxPause)
     }
+
+    def deeplinks()={
+        exec(Deeplinks.departmentTree).pause(minPause, maxPause)
+       .exec(Deeplinks.filteredProducts).pause(maxPause)
+    }
+
+    def searchProducts()={
+        exec(SearchProducts.searchFilters).pause(maxPause)
+       .exec(SearchProducts.filteredProducts).pause(maxPause)
+    }
+
   }
 
   object Scenarios {
     def default = scenario("Default Load Test")
       .during(testDuration.seconds) {
         randomSwitch(
-          100d -> exec(UserJourneys.products)
-          //          15d -> exec(UserJourneys.abandonCart),
+          80d -> exec(UserJourneys.products),
+                      20d -> exec(UserJourneys.categories()),
           //          10d -> exec(UserJourneys.completePurchase)
         )
       }

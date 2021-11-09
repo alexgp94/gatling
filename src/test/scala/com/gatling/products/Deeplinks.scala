@@ -5,22 +5,18 @@ import io.gatling.http.Predef._
 
 object Deeplinks {
 
-  def deeplinks = {
+  def departmentTree = {
     exec(
       http("Deeplinks IKF")
         .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho")
         .check(status.is(200)))
+  }
 
+  def filteredProducts = {
     exec(
       http("Filtered Products IKF")
         .post("/filtered-products")
         .body(RawFileBody("data/deeplink-filtered-products.json")).asJson)
-
-    exec(
-      http("Deeplinks IKF")
-        .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho")
-        .check(status.is(200)))
-
   }
 
 }
