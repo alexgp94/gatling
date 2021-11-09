@@ -40,6 +40,7 @@ class ProductsSM extends Simulation {
   object UserJourneys {
     def minPause: FiniteDuration = 200.milliseconds
     def maxPause: FiniteDuration = 800.milliseconds
+
     def products = {
        exec(Products.products1).pause(minPause, maxPause)
       .exec(Products.products2).pause(minPause, maxPause)
@@ -51,42 +52,42 @@ class ProductsSM extends Simulation {
       .exec(Products.products8).pause(minPause, maxPause)
     }
 
-    def categories()={
+    def categories = {
        exec(Categories.departments).pause(minPause, maxPause)
       .exec(Categories.categories).pause(minPause, maxPause)
     }
 
-    def deeplinks()={
+    def deeplinks = {
         exec(Deeplinks.departmentTree).pause(minPause, maxPause)
        .exec(Deeplinks.filteredProducts).pause(maxPause)
     }
 
-    def searchProducts()={
+    def searchProducts = {
         exec(SearchProducts.searchFilters).pause(maxPause)
        .exec(SearchProducts.filteredProducts).pause(maxPause)
     }
-
   }
 
   object Scenarios {
     def default = scenario("Default Load Test")
       .during(testDuration.seconds) {
         randomSwitch(
-//           80d -> exec(UserJourneys.products),
-                       15d -> exec(UserJourneys.categories()),
-          //          10d -> exec(UserJourneys.completePurchase)
+           40d -> exec(UserJourneys.products),
+                       40d -> exec(UserJourneys.categories),
+                       10d -> exec(UserJourneys.deeplinks),
+                       10d -> exec(UserJourneys.searchProducts)
         )
       }
 
     def highPurchase = scenario("High Purhcase Load Test")
       .during(60.seconds) {
         randomSwitch(
-//          25d -> exec(UserJourneys.browseStore)
-          //          25d -> exec(UserJourneys.abandonCart),
-          //          50d -> exec(UserJourneys.completePurchase)
+          20d -> exec(UserJourneys.products),
+                      20d -> exec(UserJourneys.categories),
+                      30d -> exec(UserJourneys.deeplinks),
+                      30d -> exec(UserJourneys.searchProducts)
         )
       }
-  }
 
   setUp(
     Scenarios.default
