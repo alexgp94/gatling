@@ -8,7 +8,7 @@ object Deeplinks {
   def departmentTree = {
     exec(
       http("Deeplinks Department")
-        .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho")
+        .get("/department-tree?keyword=mascarillas---alcohol-y-test-de-embarazo")
         .check(status.is(200)))
   }
 
