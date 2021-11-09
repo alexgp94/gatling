@@ -3,7 +3,6 @@ package com.gatling.simulations
 import com.gatling.products.{Categories, Deeplinks, Products, SearchProducts}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-
 import scala.concurrent.duration._
 import scala.language.postfixOps
 
@@ -20,7 +19,7 @@ class ProductsSM extends Simulation {
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
   def testDuration: Int = getProperty("DURATION", "60").toInt
 
-  val environments = s"${environment}"
+  val environments = s"$environment"
   val domain = "5doa19p9r7.execute-api.us-east-1.amazonaws.com"
   val httpProtocol = http
     .baseUrl("https://" + domain + "/" + environments)
@@ -30,9 +29,9 @@ class ProductsSM extends Simulation {
     .header("x-access-token", "")
 
   before {
-    println(s"Running test with ${userCount} users")
-    println(s"Ramping users over ${rampDuration} seconds")
-    println(s"Total test duration: ${testDuration} seconds")
+    println(s"Running test with $userCount users")
+    println(s"Ramping users over $rampDuration seconds")
+    println(s"Total test duration: $testDuration seconds")
   }
   after {
     println("Stress testing complete")
@@ -91,7 +90,7 @@ class ProductsSM extends Simulation {
 
   setUp(
     Scenarios.default
-      .inject(rampUsers(userCount) during (rampDuration.seconds)).protocols(httpProtocol),
+      .inject(rampUsers(userCount) during (rampDuration seconds)).protocols(httpProtocol),
     //    Scenarios.highPurchase
     //      .inject(rampUsers(5) during (10.seconds)).protocols(httpProtocol)
   )
