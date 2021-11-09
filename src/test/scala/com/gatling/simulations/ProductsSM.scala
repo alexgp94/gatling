@@ -74,7 +74,7 @@ class ProductsSM extends Simulation {
       .during(testDuration.seconds) {
         randomSwitch(
 //           80d -> exec(UserJourneys.products),
-                       100d -> exec(UserJourneys.categories()),
+                       15d -> exec(UserJourneys.categories()),
           //          10d -> exec(UserJourneys.completePurchase)
         )
       }
