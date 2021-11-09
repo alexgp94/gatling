@@ -7,14 +7,14 @@ object Deeplinks {
 
   def departmentTree = {
     exec(
-      http("Deeplinks")
+      http("Deeplinks Department")
         .get("/department-tree?keyword=fortalece-tu-cabello-con-tio-nacho")
         .check(status.is(200)))
   }
 
   def filteredProducts = {
     exec(
-      http("Filtered Products")
+      http("Deeplinks Filtered Products")
         .post("/filtered-products")
         .body(RawFileBody("data/deeplink-filtered-products.json")).asJson)
   }
@@ -28,7 +28,7 @@ object Deeplinks {
 
   def filteredProductsMF = {
     exec(
-      http("Filtered Products MF")
+      http("Deeplinks Filtered Products MF")
         .post("/filtered-products")
         .body(RawFileBody("data/deeplink-filtered-productsMF.json")).asJson)
   }

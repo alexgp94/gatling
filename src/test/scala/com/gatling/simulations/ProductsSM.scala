@@ -77,9 +77,9 @@ class ProductsSM extends Simulation {
       .during(testDuration.seconds) {
         randomSwitch(
           40d -> exec(UserJourneys.products),
-          40d -> exec(UserJourneys.categories),
-          10d -> exec(UserJourneys.deeplinks),
-          10d -> exec(UserJourneys.searchProducts)
+                      40d -> exec(UserJourneys.categories),
+                      10d -> exec(UserJourneys.deeplinks),
+                      10d -> exec(UserJourneys.searchProducts)
         )
       }
 
@@ -87,9 +87,9 @@ class ProductsSM extends Simulation {
       .during(60.seconds) {
         randomSwitch(
           20d -> exec(UserJourneys.products),
-          20d -> exec(UserJourneys.categories),
-          30d -> exec(UserJourneys.deeplinks),
-          30d -> exec(UserJourneys.searchProducts)
+                      20d -> exec(UserJourneys.categories),
+                      30d -> exec(UserJourneys.deeplinks),
+                      30d -> exec(UserJourneys.searchProducts)
         )
       }
   }

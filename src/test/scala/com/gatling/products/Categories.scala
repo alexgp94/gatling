@@ -7,13 +7,13 @@ object Categories {
 
   def departments = {
     exec(
-      http("WEB Departments IKF")
+      http("WEB Departments")
         .get("/departments"))
   }
 
   def categories = {
     exec(
-      http("APP Categories IKF")
+      http("APP Categories")
         .get("/getcategories"))
   }
 
