@@ -76,10 +76,10 @@ class ProductsSM extends Simulation {
     def default = scenario("Default Load Test")
       .during(testDuration.seconds) {
         randomSwitch(
-          40d -> exec(UserJourneys.products),
-                      40d -> exec(UserJourneys.categories),
-                      10d -> exec(UserJourneys.deeplinks),
-                      10d -> exec(UserJourneys.searchProducts)
+          100d -> exec(UserJourneys.products)
+                      //40d -> exec(UserJourneys.categories),
+                      //10d -> exec(UserJourneys.deeplinks),
+                      //10d -> exec(UserJourneys.searchProducts)
         )
       }
 
