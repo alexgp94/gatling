@@ -20,7 +20,7 @@ class Simulationv extends Simulation {
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
 
-  def testDuration: Int = getProperty("DURATION", "10").toInt
+  def testDuration: Int = getProperty("DURATION", "20").toInt
 
 
   val httpProtocol = http
