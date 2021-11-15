@@ -4,19 +4,19 @@ def RAMP_DURATION_PARAM
 def DURATION_PARAM
 pipeline {
     agent any
-    parameters {
-        choice(name: 'ENVIRONMENT',
-        choices: 'UAT\nPROD\nMFPRD')
-        string(name: 'USERS',
-        defaultValue: '10',
-        description: 'Running test with: # users')
-        string(name: 'RAMP_DURATION',
-        defaultValue: '10',
-        description: 'Ramping users over: # seconds')
-        string(name: 'DURATION',
-        defaultValue: '10',
-        description: 'Total test duration: # seconds')
-    }
+//     parameters {
+//         choice(name: 'ENVIRONMENT',
+//         choices: 'UAT\nPROD\nMFPRD')
+//         string(name: 'USERS',
+//         defaultValue: '10',
+//         description: 'Running test with: # users')
+//         string(name: 'RAMP_DURATION',
+//         defaultValue: '10',
+//         description: 'Ramping users over: # seconds')
+//         string(name: 'DURATION',
+//         defaultValue: '10',
+//         description: 'Total test duration: # seconds')
+//     }
     stages {
          stage('Build') {
             steps {
@@ -26,7 +26,9 @@ pipeline {
                     RAMP_DURATION_PARAM = "${params.RAMP_DURATION}"
                     DURATION_PARAM = "${params.DURATION}"
                     echo "Build Step"
-                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
+//                     sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
+                    sh 'mvn gatling:test -Dgatling.simulationClass=com.gatling.RecordedSimulation
+'
                }
             }
          }
