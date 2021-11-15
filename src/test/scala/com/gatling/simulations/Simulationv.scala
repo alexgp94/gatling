@@ -16,11 +16,11 @@ class Simulationv extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "10").toInt
+  def userCount: Int = getProperty("USERS", "100").toInt
 
-  def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
+  def rampDuration: Int = getProperty("RAMP_DURATION", "50").toInt
 
-  def testDuration: Int = getProperty("DURATION", "20").toInt
+  def testDuration: Int = getProperty("DURATION", "100").toInt
 
 
   val httpProtocol = http
