@@ -16,11 +16,11 @@ class Simulationv extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "100").toInt
+  def userCount: Int = getProperty("USERS", "1000").toInt
 
-  def rampDuration: Int = getProperty("RAMP_DURATION", "50").toInt
+  def rampDuration: Int = getProperty("RAMP_DURATION", "200").toInt
 
-  def testDuration: Int = getProperty("DURATION", "100").toInt
+  def testDuration: Int = getProperty("DURATION", "1000").toInt
 
 
   val httpProtocol = http
@@ -100,6 +100,7 @@ class Simulationv extends Simulation {
 
   object UserJourneys {
     def minPause: FiniteDuration = 200.milliseconds
+
     def maxPause: FiniteDuration = 800.milliseconds
 
     def products = {
@@ -172,13 +173,29 @@ class Simulationv extends Simulation {
       }
   }
 
+  val searchProducts = scenario("Users Search Products").exec(UserJourneys.products)
+
   setUp(
+    searchProducts.inject(
+      constantConcurrentUsers(300) during (300 seconds),
+      rampConcurrentUsers(800) to (1800) during (400 seconds),
+//      incrementConcurrentUsers(10)
+//        .times(5)
+//        .eachLevelLasting(20)
+//        .separatedByRampsLasting(20 seconds)
+//        .startingFrom(200)
+    )
+      .protocols(httpProtocol))
+
+
+/*  setUp(
     Scenarios.default
       .inject(
         atOnceUsers(userCount),
-        rampUsers(userCount) during (rampDuration seconds)).protocols(httpProtocol),
-    //    Scenarios.highPurchase
-    //      .inject(rampUsers(5) during (10.seconds)).protocols(httpProtocol)
-  )
+        rampUsers(userCount) during (rampDuration seconds),
+        constantUsersPerSec(userCount).during(rampDuration seconds).randomized,
+        rampUsersPerSec(userCount).to(20).during(rampDuration seconds).randomized
+      ).protocols(httpProtocol)
+  )*/
 
 }
