@@ -199,3 +199,6 @@ class Simulationv extends Simulation {
   )*/
 
 }
+
+
+//mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.Simulationv
