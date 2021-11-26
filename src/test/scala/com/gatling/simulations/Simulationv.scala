@@ -20,7 +20,7 @@ class Simulationv extends Simulation {
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "200").toInt
 
-  def testDuration: Int = getProperty("DURATION", "1000").toInt
+  def testDuration: Int = getProperty("DURATION", "36000").toInt
 
 
   val httpProtocol = http
@@ -177,8 +177,8 @@ class Simulationv extends Simulation {
 
   setUp(
     searchProducts.inject(
-      constantConcurrentUsers(300) during (300 seconds),
-      rampConcurrentUsers(800) to (1800) during (400 seconds),
+      constantConcurrentUsers(400) during (5000 seconds),
+      rampConcurrentUsers(800) to (1000) during (10000 seconds),
 //      incrementConcurrentUsers(10)
 //        .times(5)
 //        .eachLevelLasting(20)
