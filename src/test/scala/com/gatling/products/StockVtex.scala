@@ -8,13 +8,20 @@ object StockVtex {
   val csvfeeder = csv("src/test/resources/data/getProductId.csv").circular
 
   def updateWithLabel1 = {
+
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("update WL1")
+        http("Update WL01")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel1}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL01")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
 
   //  }
@@ -22,90 +29,144 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 2")
+        http("update WL02")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel2}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL02")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel3 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 3")
+        http("update WL03")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel3}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL03")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel4 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 4")
+        http("update WL04")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel4}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL04")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel5 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 5")
+        http("update WL05")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel5}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL05")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel6 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 6")
+        http("update WL06")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel6}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL06")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel7 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 7")
+        http("update WL07")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel7}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL07")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel8 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 8")
+        http("update WL08")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel8}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL08")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel9 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 9")
+        http("update WL09")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel9}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL09")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
   def updateWithLabel10 = {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("updateWL 10")
+        http("update WL10")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel10}")
           .body(RawFileBody("data/stockVtex.json")).asJson)
-    //            .check(status.is(200)))
+      .pause(1, 2)
+      .exec(
+        http("Get Stock WL10")
+          .get("/api/logistics/pvt/inventory/skus/${productId}")
+          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
   }
   //  }
 

@@ -17,7 +17,7 @@ class StockVtexSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "500").toInt
+  def userCount: Int = getProperty("USERS", "100").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "1").toInt
 
@@ -53,38 +53,38 @@ class StockVtexSM extends Simulation {
     .baseUrl("https://" + domain + "05" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0005-HOGVKN")
-    .header("X-VTEX-API-AppToken", "UMRHABOVJKTRSFOJHQFDKEIYAKMREAHONALQQLNHRHWWLQOBRBZVPZKPETHQOWQICEDSTYSWCYMCILNKVLADAMZOQWMXDXTUROTGMWHSIDTRMHHSFXUCWMHQEOBXMVSE")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0005-BCXAUR")
+    .header("X-VTEX-API-AppToken", "UFDEECIGRXHXINCPPXLCGARKWLAWUDIGLDBKNKUMQCOVNPHNKBOHKBNTOTHSBMLNPBMEMRCEDZMEMVXHEMLSPAWJPHWTDBKDRAFLCCBTZKEKOJHTWAOPBSYPEDPEVIBB")
   val httpProtocol6 = http
     .baseUrl("https://" + domain + "06" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0006-UNZAGR")
-    .header("X-VTEX-API-AppToken", "GGOFPQFICRDDZQMYTYZWFPFLHONZNKZUHGZGQMUBMCHOVVHBESSLMKPRBCYACFUSSIWSQGIHEYJDIQQLHLVVRNIWRIEONTZHIOWMZOLYKLHNBMIKLMTQKYAEZZBIBTTK")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0006-UOWIPO")
+    .header("X-VTEX-API-AppToken", "JPJFJXUSBTANVBXHGPTUTTYESGHSONKGMDWRBUFNNPAMNRAIDISBAVAPQEMCPCDOJTBREGFLJGGETMRBGZOGUJFQDHAXIDXLLMCUPIDWCHRUPWWENLVQNXUANLNXGIDG")
   val httpProtocol7 = http
     .baseUrl("https://" + domain + "07" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0007-AXBKCT")
-    .header("X-VTEX-API-AppToken", "ANZCCXOHDLMZIPTOLLWDNVUNWAVSVHWZKVONUWGLSPOUMSRFEGLKCXIFTMGBCWLWONPMBGTPFLKYGZADJQOPVMXMNIUIPEIWDSFZDEEXMWERNJZTLCSMHWBCPDZSLLZB")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0007-OZACCM")
+    .header("X-VTEX-API-AppToken", "CGRFPKFLXBVDHMLQYUOXURCFDLDDMUYZWFSIEUHMWXNPAQZLCUIRKXULDLCEHBZDDWHCUCLEMCAXDMFNLSBRMGOYKGESSDEVYKMEIXQZIDFHXXHRGOSPAIRWIJRNXTMJ")
   val httpProtocol8 = http
     .baseUrl("https://" + domain + "08" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0008-OFMGLU")
-    .header("X-VTEX-API-AppToken", "CFOMNOFYKHWZAECRQVPHQFIZDOPLOJDICJEHBHKZUBNJEXVUHFZMZUMXWOIZZTKBENXRZUQJLPMORYVGTVEJKRJHWHLMYLAARMFQZDUMPQBJHXGXTCFEPBRNEQVSJEKZ")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0008-LOKJPM")
+    .header("X-VTEX-API-AppToken", "HPDUMHRWTFSWNPUJYULREVORBHAELPWYNHUSRFJRTSPXMBYNPVJIQBILBLSFGNKDITIGVBRTLUXMGREAINOQGNHLYIQFMDKGHLOSSRRNDQXWEVFKHSWTYUXUMXHNLLGH")
   val httpProtocol9 = http
     .baseUrl("https://" + domain + "09" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0009-DARTXE")
-    .header("X-VTEX-API-AppToken", "GJJRJOCOLSJELGAYYLFFLHXUXAKDKGGJMVGDNVTOSWNSBWCKISIRITRYLOUJDZEFLARPZWKCRQMOUFTAXZVRXOASEHSZAJLSSHGAFNLLHFASGCEGUUMEEMIWAYLRELCH")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0009-UHVFMS")
+    .header("X-VTEX-API-AppToken", "ATNPKLAOKDPRWGJHSMOUZJOPWURGNRNVOHYYYJMKQTRQPXENOMHOKGCRFYSPTTBTQTCPILIIZEEFRXZZPESAKYKIEGTAQXQWSYAWUPEDEYPGBWZHYTAPBAISJULBRISC")
   val httpProtocol10 = http
     .baseUrl("https://" + domain + "10" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
     .header("androidversion", "100000")
-    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0010-ESXUFE")
-    .header("X-VTEX-API-AppToken", "YEAFKISOKSGLTRNBNSLEAUBFZXELAPQSOVBWWBAMHLQGOGBPTZADNYGEDVFMDGOUCOXYPQFLSYXODUQTVPSBPMFPPXSAWNJAXVEAIDZCTOLOARAJEMROONFPIHISYEPE")
+    .header("X-VTEX-API-AppKey", "vtexappkey-qainkafarma0010-QWQFNH")
+    .header("X-VTEX-API-AppToken", "BYDKTQZSILLRCMDPXUYBWNIGBXDJQUHHXARMVWFNESCQWRSXGSKBOXNOPWIVMPCODEUBURTAPLWEKRJKFGDYJGSZMDXYOJBPPONSXQDPZJLDBIEXNYQFMEEXLUPRUUMF")
 
   before {
     println(s"Running test with $userCount users")
@@ -134,45 +134,45 @@ val alex = "ss"
   }
 
   object Scenarios {
-    def updateWL1 = scenario("update WL1")
+    def updateWL1 = scenario("update WL01")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL1))
       }
-    def updateWL2 = scenario("update WL2")
+    def updateWL2 = scenario("update WL02")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL2))
       }
-    def updateWL3 = scenario("update WL3")
+    def updateWL3 = scenario("update WL03")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL3))
       }
-    def updateWL4 = scenario("update WL4")
+    def updateWL4 = scenario("update WL04")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL4))
       }
-    def updateWL5 = scenario("update WL5")
+    def updateWL5 = scenario("update WL05")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL5))
       }
-    def updateWL6 = scenario("update WL6")
+    def updateWL6 = scenario("update WL06")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
       }
-    def updateWL7 = scenario("update WL7")
+    def updateWL7 = scenario("update WL07")
       .during(testDuration.seconds) {
-        randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
+        randomSwitch(100d -> exec(UserJourneys.updateStockWL7))
       }
-    def updateWL8 = scenario("update WL8")
+    def updateWL8 = scenario("update WL08")
       .during(testDuration.seconds) {
-        randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
+        randomSwitch(100d -> exec(UserJourneys.updateStockWL8))
       }
-    def updateWL9 = scenario("update WL9")
+    def updateWL9 = scenario("update WL09")
       .during(testDuration.seconds) {
-        randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
+        randomSwitch(100d -> exec(UserJourneys.updateStockWL9))
       }
     def updateWL10 = scenario("update WL10")
       .during(testDuration.seconds) {
-        randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
+        randomSwitch(100d -> exec(UserJourneys.updateStockWL10))
       }
 
   }
@@ -183,7 +183,7 @@ val alex = "ss"
     Scenarios.
       updateWL1
       .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
-    //        .inject(rampUsers(userCount) during (rampDuration seconds)).protocols(httpProtocol1),
+//            .inject(rampUsers(userCount) during (rampDuration seconds)).protocols(httpProtocol1),
     Scenarios.
       updateWL2
       .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
@@ -193,24 +193,24 @@ val alex = "ss"
     Scenarios.
       updateWL4
       .inject(atOnceUsers(userCount)).protocols(httpProtocol4),
-//    Scenarios.
-//      updateWL5
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
-//    Scenarios.
-//      updateWL6
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-//     Scenarios.
-//      updateWL7
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-//     Scenarios.
-//      updateWL8
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-//     Scenarios.
-//      updateWL9
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-//     Scenarios.
-//      updateWL10
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
+    Scenarios.
+      updateWL5
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
+    Scenarios.
+      updateWL6
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
+     Scenarios.
+      updateWL7
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol7),
+     Scenarios.
+      updateWL8
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol8),
+     Scenarios.
+      updateWL9
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol9),
+     Scenarios.
+      updateWL10
+      .inject(atOnceUsers(userCount)).protocols(httpProtocol10),
 
   )
 
