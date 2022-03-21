@@ -33,7 +33,7 @@ pipeline {
          stage('Metrics') {
             steps {
                 echo "Metrics"
-                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_AlexRepo/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_AlexRepo/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.130.24/$DIR_NAME '
+                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_AlexRepo2/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_AlexRepo2/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.130.24/$DIR_NAME '
             }
          }
          stage('Deploy') {
