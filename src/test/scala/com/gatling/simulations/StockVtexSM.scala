@@ -17,11 +17,11 @@ class StockVtexSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "100").toInt
+  def userCount: Int = getProperty("USERS", "10").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "1").toInt
 
-  def testDuration: Int = getProperty("DURATION", "20").toInt
+  def testDuration: Int = getProperty("DURATION", "2").toInt
 
   val environments = s"$environment"
   val domain = "qainkafarma00"
