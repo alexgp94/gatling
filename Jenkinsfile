@@ -38,6 +38,7 @@ pipeline {
          }
          stage('Deploy') {
             steps {
+            echo "Deploy"
 //                 script {
 //                      echo "string branch: http://3.101.130.24/$DIR_NAME"
 //                 }
