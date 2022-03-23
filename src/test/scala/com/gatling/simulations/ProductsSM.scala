@@ -16,11 +16,11 @@ class ProductsSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "5").toInt
+  def userCount: Int = getProperty("USERS", "50").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
 
-  def testDuration: Int = getProperty("DURATION", "60").toInt
+  def testDuration: Int = getProperty("DURATION", "10").toInt
 
   val environments = s"$environment"
   val domain = "5doa19p9r7.execute-api.us-east-1.amazonaws.com"
@@ -166,4 +166,4 @@ class ProductsSM extends Simulation {
 
 }
 
-//mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.Products
+//mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsSM

@@ -26,19 +26,19 @@ pipeline {
                     RAMP_DURATION_PARAM = "${params.RAMP_DURATION}"
                     DURATION_PARAM = "${params.DURATION}"
                     echo "Build Step"
-                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
+                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.ProductsSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
                }
             }
          }
          stage('Metrics') {
             steps {
                 echo "Metrics"
-                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_AlexRepo2/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_AlexRepo2/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.130.24/$DIR_NAME '
+                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_Products/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_Products/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.130.24/$DIR_NAME '
             }
          }
          stage('Deploy') {
             steps {
-                echo "Deploy Step"
+               echo "string branch: http://3.101.130.24/$DIR_NAME"
             }
          }
     }
