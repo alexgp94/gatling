@@ -17,11 +17,11 @@ class StockVtexSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "10").toInt
+  def userCount: Int = getProperty("USERS", "100").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "1").toInt
 
-  def testDuration: Int = getProperty("DURATION", "2").toInt
+  def testDuration: Int = getProperty("TEST_DURATION", "10").toInt
 
   val environments = s"$environment"
   val domain = "qainkafarma00"
@@ -94,7 +94,7 @@ class StockVtexSM extends Simulation {
   after {
     println("Stress testing complete")
   }
-val alex = "ss"
+
   object UserJourneys {
     def minPause: FiniteDuration = 200.milliseconds
 
@@ -102,6 +102,9 @@ val alex = "ss"
 
     def updateStockWL1 = {
       exec(StockVtex.updateWithLabel1).pause(minPause, maxPause)
+    }
+    def updatePrice = {
+      exec(StockVtex.updatePriceVtex).pause(minPause, maxPause)
     }
     def updateStockWL2 = {
       exec(StockVtex.updateWithLabel2).pause(minPause, maxPause)
@@ -137,6 +140,10 @@ val alex = "ss"
     def updateWL1 = scenario("update WL01")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL1))
+      }
+    def updatePriceVtex = scenario("update Price vtex")
+      .during(testDuration.seconds) {
+        randomSwitch(100d -> exec(UserJourneys.updatePrice))
       }
     def updateWL2 = scenario("update WL02")
       .during(testDuration.seconds) {
@@ -177,40 +184,44 @@ val alex = "ss"
 
   }
 
-  val default = scenario("update Stocks").exec(UserJourneys.updateStockWL1)
+  val default = scenario("update Stocks and prices").exec(UserJourneys.updateStockWL1)
 
   setUp(
     Scenarios.
       updateWL1
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
-//            .inject(rampUsers(userCount) during (rampDuration seconds)).protocols(httpProtocol1),
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
+            .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1),
     Scenarios.
-      updateWL2
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
-    Scenarios.
-      updateWL3
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol3),
-    Scenarios.
-      updateWL4
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol4),
-    Scenarios.
-      updateWL5
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
-    Scenarios.
-      updateWL6
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-     Scenarios.
-      updateWL7
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol7),
-     Scenarios.
-      updateWL8
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol8),
-     Scenarios.
-      updateWL9
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol9),
-     Scenarios.
-      updateWL10
-      .inject(atOnceUsers(userCount)).protocols(httpProtocol10),
+      updatePriceVtex
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
+            .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1),
+//    Scenarios.
+//      updateWL2
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
+//    Scenarios.
+//      updateWL3
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol3),
+//    Scenarios.
+//      updateWL4
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol4),
+//    Scenarios.
+//      updateWL5
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
+//    Scenarios.
+//      updateWL6
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
+//     Scenarios.
+//      updateWL7
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol7),
+//     Scenarios.
+//      updateWL8
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol8),
+//     Scenarios.
+//      updateWL9
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol9),
+//     Scenarios.
+//      updateWL10
+//      .inject(atOnceUsers(userCount)).protocols(httpProtocol10),
 
   )
 
@@ -279,4 +290,4 @@ val alex = "ss"
 
 }
 
-//mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.Products
+//mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM

@@ -12,14 +12,30 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("Update WL01")
-          .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel1}")
+        http("Stock PUT WL01")
+          .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/977")
           .body(RawFileBody("data/stockVtex.json")).asJson)
       .pause(1, 2)
       .exec(
-        http("Get Stock WL01")
+        http("Stock GET WL01")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
           .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(status.is(200))
+      )
+  }
+  def updatePriceVtex = {
+
+    //    repeat(3) {
+    feed(csvfeeder)
+      .exec(
+        http("Update Prices")
+          .put("/api/pricing/prices/${productId}")
+          .body(RawFileBody("data/priceVtex.json")).asJson)
+      .pause(1, 2)
+      .exec(
+        http("Get Prices")
+          .get("/api/pricing/prices/${productId}")
+          .check(jsonPath("$.costPrice").is("150"))
           .check(status.is(200))
       )
   }
