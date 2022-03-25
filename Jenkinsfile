@@ -26,7 +26,7 @@ pipeline {
                     RAMP_DURATION_PARAM = "${params.RAMP_DURATION}"
                     TEST_DURATION_PARAM = "${params.TEST_DURATION}"
                     echo "Build Step"
-                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${TEST_DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
+                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DTEST_DURATION=${TEST_DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
                }
             }
          }
