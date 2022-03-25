@@ -53,8 +53,7 @@ object StockVtex {
         http("2 GET STOCK >> 6000")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
           .check(jsonPath("$..totalQuantity").is("6000"))
-          .check(status.is(200))
-      )
+          .check(status in(200 to 210)))
   }
   def updatePriceVtex2 = {
 
@@ -72,6 +71,17 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
+  def agora = {
+      exec(
+        http("3 AGORA GET STK PRI")
+          .get("/api/catalog_system/pub/products/search/?fq=skuId:639")
+          .check(jsonPath("$..AvailableQuantity").is("690"))
+//          .check(jsonPath("$.basePrice").is("690"))
+          .check(status.in(200 to 210))
+      )
+  }
+
   //  }
   def updateWithLabel3 = {
     //    repeat(3) {

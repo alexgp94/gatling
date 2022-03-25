@@ -17,7 +17,7 @@ class StockVtexSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "100").toInt
+  def userCount: Int = getProperty("USERS", "50").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "1").toInt
 
@@ -25,6 +25,9 @@ class StockVtexSM extends Simulation {
 
   val environments = s"$environment"
   val domain = "qainkafarma00"
+  val httpProtocol = http
+    .baseUrl("https://agoraqa.myvtex.com")
+
   val httpProtocol1 = http
     .baseUrl("https://" + domain + "01" + ".vtexcommercestable.com.br")
     .header("Content-Type", "application/json")
@@ -114,6 +117,9 @@ class StockVtexSM extends Simulation {
     def updatePrice2 = {
       exec(StockVtex.updatePriceVtex2).pause(minPause, maxPause)
     }
+    def agora1 = {
+      exec(StockVtex.agora).pause(minPause, maxPause)
+    }
     def updateStockWL3 = {
       exec(StockVtex.updateWithLabel3).pause(minPause, maxPause)
     }
@@ -154,7 +160,7 @@ class StockVtexSM extends Simulation {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL1))
       }
 
-    def updatePriceVtex = scenario("1. Update Price vtex")
+    def updatePriceVtex = scenario("1. Price Update and Get Vtex")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updatePrice))
       }
@@ -164,9 +170,14 @@ class StockVtexSM extends Simulation {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL2))
       }
 
-    def updatePriceVtex2 = scenario("2. Update Price vtex")
+    def updatePriceVtex2 = scenario("2. Price Update and Get Vtex")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updatePrice2))
+      }
+
+    def agora = scenario("3. Agora Get Stocks and Prices")
+      .during(testDuration.seconds) {
+        randomSwitch(100d -> exec(UserJourneys.agora1))
       }
 
     def updateWL3 = scenario("update WL03")
@@ -222,6 +233,11 @@ class StockVtexSM extends Simulation {
         Scenarios.
           updateWL2
           .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)
+      ).
+      andThen(
+        Scenarios.
+          agora
+          .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol)
       ),
     Scenarios.
       updatePriceVtex
