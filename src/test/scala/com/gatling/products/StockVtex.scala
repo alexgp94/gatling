@@ -12,14 +12,14 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("1 PUT STOCK >> 3500")
+        http("1 PUT STOCK >> 2500")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/977")
           .body(RawFileBody("data/stockVtex.json")).asJson)
       .pause(1, 2)
       .exec(
-        http("1 GET STOCK >> 3500")
+        http("1 GET STOCK >> 2500")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -94,7 +94,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL03")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -110,7 +110,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL04")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -126,7 +126,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL05")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -142,7 +142,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL06")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -158,7 +158,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL07")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -174,7 +174,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL08")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -190,7 +190,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL09")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
@@ -206,7 +206,7 @@ object StockVtex {
       .exec(
         http("Get Stock WL10")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("2500"))
           .check(status.is(200))
       )
   }
