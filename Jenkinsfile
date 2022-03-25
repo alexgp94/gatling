@@ -13,7 +13,7 @@ pipeline {
         string(name: 'RAMP_DURATION',
         defaultValue: '10',
         description: 'Ramping users over: # seconds')
-        string(name: 'DURATION',
+        string(name: 'TEST_DURATION',
         defaultValue: '10',
         description: 'Total test duration: # seconds')
     }
@@ -24,9 +24,9 @@ pipeline {
                     ENVIRONMENT_PARAM = "${params.ENVIRONMENT}"
                     USERS_PARAM = "${params.USERS}"
                     RAMP_DURATION_PARAM = "${params.RAMP_DURATION}"
-                    DURATION_PARAM = "${params.DURATION}"
+                    TEST_DURATION_PARAM = "${params.TEST_DURATION}"
                     echo "Build Step"
-                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
+                    sh 'mvn clean && mvn gatling:test -Dgatling.simulationClass=com.gatling.simulations.StockVtexSM -DUSERS=${USERS_PARAM} -DRAMP_DURATION=${RAMP_DURATION_PARAM} -DDURATION=${TEST_DURATION_PARAM} -DENVIRONMENT=${ENVIRONMENT_PARAM}'
                }
             }
          }
