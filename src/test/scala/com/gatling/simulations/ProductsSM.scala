@@ -94,7 +94,7 @@ class ProductsSM extends Simulation {
       }
   }
     setUp(
-      Scenarios.highPurchase
+      Scenarios.default
 //        .inject(constantConcurrentUsers(userCount) during (testDuration seconds)).protocols(httpProtocol)
         .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol),
       //    Scenarios.highPurchase
