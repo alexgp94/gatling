@@ -103,33 +103,45 @@ class StockVtexSM extends Simulation {
     def updateStockWL1 = {
       exec(StockVtex.updateWithLabel1).pause(minPause, maxPause)
     }
+
     def updatePrice = {
       exec(StockVtex.updatePriceVtex).pause(minPause, maxPause)
     }
+
     def updateStockWL2 = {
       exec(StockVtex.updateWithLabel2).pause(minPause, maxPause)
+    }
+    def updatePrice2 = {
+      exec(StockVtex.updatePriceVtex2).pause(minPause, maxPause)
     }
     def updateStockWL3 = {
       exec(StockVtex.updateWithLabel3).pause(minPause, maxPause)
     }
+
     def updateStockWL4 = {
       exec(StockVtex.updateWithLabel4).pause(minPause, maxPause)
     }
+
     def updateStockWL5 = {
       exec(StockVtex.updateWithLabel5).pause(minPause, maxPause)
     }
+
     def updateStockWL6 = {
       exec(StockVtex.updateWithLabel6).pause(minPause, maxPause)
     }
+
     def updateStockWL7 = {
       exec(StockVtex.updateWithLabel7).pause(minPause, maxPause)
     }
+
     def updateStockWL8 = {
       exec(StockVtex.updateWithLabel8).pause(minPause, maxPause)
     }
+
     def updateStockWL9 = {
       exec(StockVtex.updateWithLabel9).pause(minPause, maxPause)
     }
+
     def updateStockWL10 = {
       exec(StockVtex.updateWithLabel10).pause(minPause, maxPause)
     }
@@ -137,46 +149,61 @@ class StockVtexSM extends Simulation {
   }
 
   object Scenarios {
-    def updateWL1 = scenario("update WL01")
+    def updateWL1 = scenario("1. Stocks Update and Get Vtex")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL1))
       }
-    def updatePriceVtex = scenario("update Price vtex")
+
+    def updatePriceVtex = scenario("1. Update Price vtex")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updatePrice))
       }
-    def updateWL2 = scenario("update WL02")
+
+    def updateWL2 = scenario("2. Stocks Update and Get Vtex")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL2))
       }
+
+    def updatePriceVtex2 = scenario("2. Update Price vtex")
+      .during(testDuration.seconds) {
+        randomSwitch(100d -> exec(UserJourneys.updatePrice2))
+      }
+
     def updateWL3 = scenario("update WL03")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL3))
       }
+
     def updateWL4 = scenario("update WL04")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL4))
       }
+
     def updateWL5 = scenario("update WL05")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL5))
       }
+
     def updateWL6 = scenario("update WL06")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL6))
       }
+
     def updateWL7 = scenario("update WL07")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL7))
       }
+
     def updateWL8 = scenario("update WL08")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL8))
       }
+
     def updateWL9 = scenario("update WL09")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL9))
       }
+
     def updateWL10 = scenario("update WL10")
       .during(testDuration.seconds) {
         randomSwitch(100d -> exec(UserJourneys.updateStockWL10))
@@ -189,39 +216,48 @@ class StockVtexSM extends Simulation {
   setUp(
     Scenarios.
       updateWL1
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
-            .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1),
+      //      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
+      .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1).
+      andThen(
+        Scenarios.
+          updateWL2
+          .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)
+      ),
     Scenarios.
       updatePriceVtex
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
-            .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1),
-//    Scenarios.
-//      updateWL2
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
-//    Scenarios.
-//      updateWL3
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol3),
-//    Scenarios.
-//      updateWL4
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol4),
-//    Scenarios.
-//      updateWL5
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
-//    Scenarios.
-//      updateWL6
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
-//     Scenarios.
-//      updateWL7
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol7),
-//     Scenarios.
-//      updateWL8
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol8),
-//     Scenarios.
-//      updateWL9
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol9),
-//     Scenarios.
-//      updateWL10
-//      .inject(atOnceUsers(userCount)).protocols(httpProtocol10),
+      //      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
+      .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1).andThen(
+      Scenarios.
+        updatePriceVtex2
+        .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)
+    ),
+    //    Scenarios.
+    //      updateWL2
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
+    //    Scenarios.
+    //      updateWL3
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol3),
+    //    Scenarios.
+    //      updateWL4
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol4),
+    //    Scenarios.
+    //      updateWL5
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol5),
+    //    Scenarios.
+    //      updateWL6
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol6),
+    //     Scenarios.
+    //      updateWL7
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol7),
+    //     Scenarios.
+    //      updateWL8
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol8),
+    //     Scenarios.
+    //      updateWL9
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol9),
+    //     Scenarios.
+    //      updateWL10
+    //      .inject(atOnceUsers(userCount)).protocols(httpProtocol10),
 
   )
 

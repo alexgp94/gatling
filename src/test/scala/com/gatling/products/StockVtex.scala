@@ -12,12 +12,12 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("1 STOCK UPDATE")
+        http("1 PUT STOCK >> 3500")
           .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/977")
           .body(RawFileBody("data/stockVtex.json")).asJson)
       .pause(1, 2)
       .exec(
-        http("2 STOCK GET WL977")
+        http("1 GET STOCK >> 3500")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
           .check(jsonPath("$..totalQuantity").is("3500"))
           .check(status.is(200))
@@ -28,12 +28,12 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("1 PRICE UPDATE")
+        http("1 PUT PRICES >> 150")
           .put("/api/pricing/prices/${productId}")
           .body(RawFileBody("data/priceVtex.json")).asJson)
       .pause(1, 2)
       .exec(
-        http("2 PRICE GET")
+        http("1 GET PRICES >> 150")
           .get("/api/pricing/prices/${productId}")
           .check(jsonPath("$.basePrice").is("150"))
           .check(status.is(200))
@@ -45,14 +45,30 @@ object StockVtex {
     //    repeat(3) {
     feed(csvfeeder)
       .exec(
-        http("update WL02")
-          .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/${withlabel2}")
-          .body(RawFileBody("data/stockVtex.json")).asJson)
+        http("2 PUT STOCK >> 6000")
+          .put("/api/logistics/pvt/inventory/skus/${productId}/warehouses/977")
+          .body(RawFileBody("data/stockVtex2.json")).asJson)
       .pause(1, 2)
       .exec(
-        http("Get Stock WL02")
+        http("2 GET STOCK >> 6000")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
-          .check(jsonPath("$..totalQuantity").is("3500"))
+          .check(jsonPath("$..totalQuantity").is("6000"))
+          .check(status.is(200))
+      )
+  }
+  def updatePriceVtex2 = {
+
+    //    repeat(3) {
+    feed(csvfeeder)
+      .exec(
+        http("2 PUT PRICES >> 690")
+          .put("/api/pricing/prices/${productId}")
+          .body(RawFileBody("data/priceVtex2.json")).asJson)
+      .pause(1, 2)
+      .exec(
+        http("2 GET PRICES >> 690")
+          .get("/api/pricing/prices/${productId}")
+          .check(jsonPath("$.basePrice").is("690"))
           .check(status.is(200))
       )
   }
