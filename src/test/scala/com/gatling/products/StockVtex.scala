@@ -23,6 +23,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   def updatePriceVtex = {
 
     //    repeat(3) {
@@ -53,8 +54,9 @@ object StockVtex {
         http("2 GET STOCK >> 6000")
           .get("/api/logistics/pvt/inventory/skus/${productId}")
           .check(jsonPath("$..totalQuantity").is("6000"))
-          .check(status in(200 to 210)))
+          .check(status in (200 to 210)))
   }
+
   def updatePriceVtex2 = {
 
     //    repeat(3) {
@@ -69,16 +71,6 @@ object StockVtex {
           .get("/api/pricing/prices/${productId}")
           .check(jsonPath("$.basePrice").is("690"))
           .check(status.is(200))
-      )
-  }
-
-  def agora = {
-      exec(
-        http("3 AGORA GET STK PRI")
-          .get("/api/catalog_system/pub/products/search/?fq=skuId:639")
-          .check(jsonPath("$..AvailableQuantity").is("690"))
-//          .check(jsonPath("$.basePrice").is("690"))
-          .check(status.in(200 to 210))
       )
   }
 
@@ -98,6 +90,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel4 = {
     //    repeat(3) {
@@ -114,6 +107,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel5 = {
     //    repeat(3) {
@@ -130,6 +124,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel6 = {
     //    repeat(3) {
@@ -146,6 +141,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel7 = {
     //    repeat(3) {
@@ -162,6 +158,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel8 = {
     //    repeat(3) {
@@ -178,6 +175,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel9 = {
     //    repeat(3) {
@@ -194,6 +192,7 @@ object StockVtex {
           .check(status.is(200))
       )
   }
+
   //  }
   def updateWithLabel10 = {
     //    repeat(3) {
@@ -212,5 +211,18 @@ object StockVtex {
   }
   //  }
 
+  val csvfeeder2 = csv("src/test/resources/data/getProductIdAgora.csv").circular
+  def agora = {
+    feed(csvfeeder2)
+      .exec(
+        http("3 AGORA GET STOKS")
+          .get("/api/catalog_system/pub/products/search/?fq=skuId:${productId}")
+          .check(jsonPath("$[0].items[?(@.itemId=='${productId}')].sellers[0].commertialOffer.AvailableQuantity").is("2498"))
+//          .check(jmesPath("[0]items[?(@.itemId=='639')]..[0]..AvailableQuantity").is("5998"))
+//          .check(jsonPath("""$..[items].[0].[sellers].[0].[commertialOffer].AvailableQuantity""").is("5998"))
+          //          .check(jsonPath("$.basePrice").is("690"))
+          .check(status.in(200 to 210))
+      )
+  }
 
 }

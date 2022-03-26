@@ -17,16 +17,17 @@ class StockVtexSM extends Simulation {
 
   def environment: String = getProperty("ENVIRONMENT", "PROD")
 
-  def userCount: Int = getProperty("USERS", "50").toInt
+  def userCount: Int = getProperty("USERS", "20").toInt
 
   def rampDuration: Int = getProperty("RAMP_DURATION", "1").toInt
 
-  def testDuration: Int = getProperty("TEST_DURATION", "10").toInt
+  def testDuration: Int = getProperty("TEST_DURATION", "5").toInt
 
   val environments = s"$environment"
   val domain = "qainkafarma00"
   val httpProtocol = http
     .baseUrl("https://agoraqa.myvtex.com")
+    .header("Cookie", "VtexWorkspace=master:-; VtexRCMacIdv7=3ad23ec1-c6ee-451c-b07b-01150608d4fd; VtexIdclientAutCookie=eyJhbGciOiJFUzI1NiIsImtpZCI6IkQ1NEM2NkJERkVGNTFCQkQ4NjUwQ0ZFQTEyMUM5MDJEOTM3RDA0RkUiLCJ0eXAiOiJqd3QifQ.eyJzdWIiOiJjZ2FyY2lhQGZhcm1hY2lhc3BlcnVhbmFzLnBlIiwiYWNjb3VudCI6ImFnb3JhcWEiLCJhdWRpZW5jZSI6ImFkbWluIiwic2VzcyI6IjQxZTM4OTdjLWZhOGMtNGZlMS1iZTA1LWRkZjM4YmY4OTcwMCIsImV4cCI6MTY0ODEzNzE2NywidXNlcklkIjoiZjNhM2I4NjMtOGRlNS00ZmFkLWI4NTMtNGZhN2Y4MDEzYzA5IiwiaWF0IjoxNjQ4MDUwNzY3LCJpc3MiOiJ0b2tlbi1lbWl0dGVyIiwianRpIjoiODk5MjcyOTItNDE2ZC00ZDk4LThmNzYtMDMwMzNhMGYyZmM3In0.tldf460ImF9xATZaqrh_BMs71VRBTcJRheVZV4vhMW4j7PeLvSzz8PnCFcnhvd6kJotS4qKD0Mvv5PQllU_5RA; vtex_binding_address=agoraqa.myvtex.com/admin; _ga=GA1.2.960403479.1648050793; _gid=GA1.2.1214876695.1648050793; _hjSessionUser_959471=eyJpZCI6IjhiMzFiYmM1LTc2NzItNWIyZi04ZThlLTViYzUyN2E4MWVhNiIsImNyZWF0ZWQiOjE2NDgwNTA3OTMzMjksImV4aXN0aW5nIjpmYWxzZX0=; amp_051cbc=oOQ7ue9NAIT0ziah7QMwjX.ZjNhM2I4NjM4ZGU1NGZhZGI4NTM0ZmE3ZjgwMTNjMDk=..1furnmsqr.1furnmsr0.0.3.3; intercom-id-bs8us8hw=489bace8-4b25-4ab0-aa2d-f39650bd2988; AWSELB=6F97954918AF7EE2B27FE7653D7E35926A6DA74EE281BD478E9FD8DBCDB54B3C759FBB5676A0B03DC0A0086E42DD1095C1960746F46ED6A1D0F94F2D86847882B084A8BE73; intercom-session-bs8us8hw=NUNUYitLNzR4eUxpTHUvS2dMbkhKVE5QU2kwckhDWjF3ZG03NkZQOGxKZ2djWStiQ0hnNzk5VGhkK0hHMXgwaC0tTDcrenNrTkFHdWdEbHpmWjFkY1p1UT09--a0104bcaec3daa84d42a1ef336b5661fd579b60c; vtex_session=eyJhbGciOiJFUzI1NiIsImtpZCI6IjE4OERFMTNCQ0E3MDkyRUQyNDExNDZDQzY1RUUxMEVBRDUyOTUyQUQiLCJ0eXAiOiJqd3QifQ.eyJhY2NvdW50LmlkIjoiZGUzZjI1OTQtM2Y5Yi00OGY3LWI1MmEtNzFkZDUxYWNkMjM2IiwiaWQiOiJkM2U1N2VkYS01NGY1LTQwYjEtYjdlNC0zMTllMGZkZDMxYTIiLCJ2ZXJzaW9uIjozLCJzdWIiOiJzZXNzaW9uIiwiYWNjb3VudCI6InNlc3Npb24iLCJleHAiOjE2NDg3NDQ2NjIsImlhdCI6MTY0ODA1MzQ2MiwiaXNzIjoidG9rZW4tZW1pdHRlciIsImp0aSI6ImIyYjY0NzAzLThjOTgtNDlhMS1iYjhjLWEwNTAzZWVlNjczNSJ9.UEd5sXP3pYZCE_tCG4lK07G9SFkQ7jltiTIfiEhH85VcJ55ROl8lGzfvGaxKVB0HwGDLqVX01VIYo3ja3nKNHQ; vtex_segment=eyJjYW1wYWlnbnMiOm51bGwsImNoYW5uZWwiOiIxIiwicHJpY2VUYWJsZXMiOm51bGwsInJlZ2lvbklkIjoidjIuRDhFQUFERTA1NjM5NTk3RTFBMTQ3NzdEMjEzOTYzRDciLCJ1dG1fY2FtcGFpZ24iOm51bGwsInV0bV9zb3VyY2UiOm51bGwsInV0bWlfY2FtcGFpZ24iOm51bGwsImN1cnJlbmN5Q29kZSI6IlBFTiIsImN1cnJlbmN5U3ltYm9sIjoiUy8iLCJjb3VudHJ5Q29kZSI6IlBFUiIsImN1bHR1cmVJbmZvIjoiZXMtUEUiLCJhZG1pbl9jdWx0dXJlSW5mbyI6ImVuLVVTIiwiY2hhbm5lbFByaXZhY3kiOiJwdWJsaWMifQ")
 
   val httpProtocol1 = http
     .baseUrl("https://" + domain + "01" + ".vtexcommercestable.com.br")
@@ -114,12 +115,15 @@ class StockVtexSM extends Simulation {
     def updateStockWL2 = {
       exec(StockVtex.updateWithLabel2).pause(minPause, maxPause)
     }
+
     def updatePrice2 = {
       exec(StockVtex.updatePriceVtex2).pause(minPause, maxPause)
     }
+
     def agora1 = {
       exec(StockVtex.agora).pause(minPause, maxPause)
     }
+
     def updateStockWL3 = {
       exec(StockVtex.updateWithLabel3).pause(minPause, maxPause)
     }
@@ -233,20 +237,19 @@ class StockVtexSM extends Simulation {
         Scenarios.
           updateWL2
           .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)
-      ).
-      andThen(
-        Scenarios.
-          agora
-          .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol)
       ),
     Scenarios.
       updatePriceVtex
       //      .inject(atOnceUsers(userCount)).protocols(httpProtocol1),
-      .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1).andThen(
-      Scenarios.
-        updatePriceVtex2
-        .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)
-    ),
+      .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1).
+      andThen(
+        Scenarios.
+          updatePriceVtex2
+          .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol1)).
+      andThen(
+        Scenarios.
+          agora
+          .inject(rampUsers(userCount) during (testDuration seconds)).protocols(httpProtocol)),
     //    Scenarios.
     //      updateWL2
     //      .inject(atOnceUsers(userCount)).protocols(httpProtocol2),
