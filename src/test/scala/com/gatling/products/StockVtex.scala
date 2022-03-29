@@ -215,7 +215,7 @@ object StockVtex {
   def agora = {
     feed(csvfeeder2)
       .exec(
-        http("3 AGORA GET STOKS")
+        http("3 GET STOKS AGORA")
           .get("/api/catalog_system/pub/products/search/?fq=skuId:${productId}")
           .check(jsonPath("$[0].items[?(@.itemId=='${productId}')].sellers[0].commertialOffer.AvailableQuantity").is("2498"))
 //          .check(jmesPath("[0]items[?(@.itemId=='639')]..[0]..AvailableQuantity").is("5998"))
