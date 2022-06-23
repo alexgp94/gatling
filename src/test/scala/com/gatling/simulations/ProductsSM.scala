@@ -102,7 +102,6 @@ class ProductsSM extends Simulation {
     )
 
 
-
     //  val products = scenario("Users Products").exec(Products.products1, Products.products2, Products.products3, Products.products4, Products.products5, Products.products6, Products.products7, Products.products8)
     //  val departmentsCategories = scenario("Users departmentsCategories").exec(Products.departments, Products.categories)
     //  val deeplinks = scenario("Users Deeplinks").exec(Home.deeplinks)

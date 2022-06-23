@@ -33,14 +33,14 @@ pipeline {
          stage('Metrics') {
             steps {
                 echo "Metrics"
-                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_Products/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_Products/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.130.24/$DIR_NAME '
+                sh ' DIR_NAME=$(cat /var/lib/jenkins/workspace/gatling_Products/target/gatling/lastRun.txt) && mv /var/lib/jenkins/workspace/gatling_Products/target/gatling/$DIR_NAME /var/www/html/ && echo http://3.101.120.84/$DIR_NAME '
             }
          }
          stage('Deploy') {
             steps {
             echo "Deploy"
 //                 script {
-//                      echo "string branch: http://3.101.130.24/$DIR_NAME"
+//                      echo "string branch: http://3.101.120.84/$DIR_NAME"
 //                 }
             }
          }
